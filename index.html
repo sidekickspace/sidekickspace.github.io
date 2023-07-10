@@ -1,593 +1,917 @@
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Sidekickspace - your AI sidekick</title>
-      <script>
-        function copyTextarea() {
-          /* Get the textarea element */
-          var textarea = document.getElementById("textarea1");
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sidekickspace - your AI sidekick</title>
+  <script>
+    function showToast(message) {
+      var toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(function() {
+        toast.classList.remove("show");
+      }, 3000); // Adjust the timeout duration (in milliseconds) as desired
+    }
+
+    function copyTextarea() {
+      /* Get the textarea element */
+      var textarea = document.getElementById("textarea1");
+
+      /* Select the text in the textarea */
+      textarea.select();
+
+      /* Copy the selected text to the clipboard */
+      document.execCommand("copy");
+
+      /* Deselect the textarea */
+      textarea.setSelectionRange(0, 0);
+
+      /* Provide feedback to the user */
+      showToast("Text has been copied!");
+    }
+
+    function copyTextareaTwo() {
+      /* Get the textarea element */
+      var textarea = document.getElementById("textarea2");
+
+      /* Select the text in the textarea */
+      textarea.select();
+
+      /* Copy the selected text to the clipboard */
+      document.execCommand("copy");
+
+      /* Deselect the textarea */
+      textarea.setSelectionRange(0, 0);
+
+      /* Provide feedback to the user */
+      showToast("Text has been copied!");
+    }
+
+    function replaceKeysWithValues() {
+      var textarea = document.getElementById("textarea2");
+      var text = textarea.value;
+
+      for (var key in keyValuePairs) {
+        if (keyValuePairs.hasOwnProperty(key)) {
+          var value = keyValuePairs[key];
+          var regex = new RegExp(key, "gi"); // "gi" flag for case-insensitive matching
+          text = text.replace(regex, value);
+        }
+      }
+
+      textarea.value = text;
+    }
+
+    function clearTextarea() {
+      var textarea = document.getElementById("textarea1");
+      textarea.value = ""; // Clear the textarea content
+    }
+
+    function clearTextareaTwo() {
+      var textarea = document.getElementById("textarea2");
+      textarea.value = ""; // Clear the textarea content
+    }
+
+    function clearButtonLabel() {
+      var labelButton = document.getElementById("addBtn");
+      labelButton.textContent = ""; // Clear the button label
+    }
+
+    function closeButton() {
+      var labelButton = document.getElementById("addBtn");
+      labelButton.style.display = "none"; 
+      document.getElementById("button4").style.display = "none";
+      document.getElementById("closeButton").style.display = "none";
+    }
+
+
+    function clearButtons() {
+      var buttonContainer = document.querySelector(".hovered-button");
+
+      // Remove all buttons from the container
+      while (buttonContainer.firstChild) {
+        buttonContainer.removeChild(buttonContainer.firstChild);
+      }
+    }
+
+  </script>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+    @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #logo-font {
+      letter-spacing: 0.5px!important;
+      font-family: "Montserrat", sans-serif!important;
+      text-transform: uppercase;
+      text-shadow: 0 1px 2px #bdbdbd;
+      font-size: 25px;
+      font-weight: 300;
+      margin-left: 50px;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+
+    .description-text {
+      font-size: 22px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      margin-left: 50px;
+      font-family: 'Red Hat Text', sans-serif;
+      width: 1000px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #inputContainer {
+      position: relative;
+      width: 1000px;
+    }
+    .description-texttwo {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      margin-left: 0px;
+      margin-right: 50px;
+      font-family: 'Red Hat Text', sans-serif;
+      width: 400px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    #button1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 20px;
+      margin-right: 0px;
+      padding: 10px;
+      color: white;
+      background: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      width: 120px;
+    }
+    #button7 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 20px;
+      margin-right: 150px;
+      padding: 10px;
+      color: white;
+      background: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      width: 120px!important;
+    }
+    #textarea1 {
+      width: 100%;
+      min-height: 200px;
+      resize: none;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding-top: 100px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
+      font-size: 18px;
+      line-height: 2rem;
+    }
+    #containerOne {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      margin: 50px;
+    }
+    #buttonThreeContainer {
+      display: block;
+      margin-left: 70px;
+    }
+    #button3 {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+    }
+    #button3:hover {
+      transform: translateY(-2px);
+    }
+    #button3:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+    }
+    #removeAllButtons {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+      margin-top: 50px;
+    }
+    #removeAllButtons:hover {
+      transform: translateY(-2px);
+    }
+    #removeAllButtons:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+    }
+
+
+    #buttonContainer {
+      display: flex;
+      justify-content: left;
+      margin: 50px;
+      align-items: center;
+    }
+    #addBtn {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 100px;
+      border: none;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      box-shadow: 6px 6px 12px #d9d9d9, -6px -6px 12px #ffffff;
+      overflow: hidden;
+      cursor: pointer;
+      font-size: 18px;
+      display: none;
+    }
+    #addBtn:hover {
+      box-shadow: 8px 8px 16px #d9d9d9, -8px -8px 16px #ffffff;
+    }
+    #addBtn:active {
+      box-shadow: 4px 4px 8px #d9d9d9, -4px -4px 8px #ffffff;
+    }
+    #button4 {
+      position: fixed;
+      top: 50%;
+      left: calc(50% + 350px);
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+      display: none;
+    }
+    #button4:hover {
+      box-shadow: 6px 6px 12px #d9d9d9, -6px -6px 12px #ffffff;
+    }
+    #button4:active {
+      box-shadow: inset 6px 6px 12px #d9d9d9, inset -6px -6px 12px #ffffff;
+    }
+    #closeButton {
+      position: fixed;
+      top: 50%;
+      left: calc(50% + 500px);
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+      display: none;
+    }
+    #closeButton:hover {
+      box-shadow: 6px 6px 12px #d9d9d9, -6px -6px 12px #ffffff;
+    }
+    #closeButton:active {
+      box-shadow: inset 6px 6px 12px #d9d9d9, inset -6px -6px 12px #ffffff;
+    }
+
+    #keyContainer {
+      position: relative;
+      width: 1000px;
+    }
+    #keyValuePairs {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .keyValuePair {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .key {
+      font-weight: bold;
+      margin-right: 20px;
+      color: #333;
+      font-size: 18px;
+    }
+    .deleteBtn {
+      margin-left: 20px;
+      background: transparent;
+      border: 2px solid #f44336;
+      cursor: pointer;
+      font-size: 16px;
+      color: #f44336;
+      transition: color 0.3s ease;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    .deleteBtn:hover {
+      background: #f44336;
+      color: white;
+    }
+
+    #containerTwo {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      margin: 50px;
+    }
+    #outputContainer {
+      position: relative;
+      width: 1000px;
+    }
+    #button2 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 20px;
+      margin-right: 150px;
+      padding: 10px;
+      color: white;
+      background: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      width: 120px!important;
+    }
+    #textarea2 {
+      width: 100%;
+      min-height: 200px;
+      resize: none;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding-top: 100px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
+      font-size: 18px;
+      line-height: 2rem;
+    }
+
+    #button5 {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+      margin-left: 70px;
+    }
+    #button5:hover {
+      transform: translateY(-2px);
+    }
+    #button5:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+    }
+    #button6 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 20px;
+      margin-right: 0px;
+      padding: 10px;
+      color: white;
+      background: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      width: 120px;
+    }
+
+    #buttonTwoContainer {
+      display: flex;
+      justify-content: left;
+      margin: 50px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .modal-content {
+      background-color: #f9f9f9;
+      margin: 20% auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 4px;
+    }
+    .modal-content p {
+      margin: 0 0 30px;
+      line-height: 1.5;
+    }
+    .modal-content button {
+      margin-right: 10px;
+    }
+    .button-primary {
+      background-color: #2980b9;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .button-primary:hover {
+      background-color: #1c6ea4;
+    }
+    .button-secondary {
+      background-color: #f1f1f1;
+      color: #333;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .button-secondary:hover {
+      background-color: #ddd;
+    }
+
+    footer {
+      background-color: #f8f8f8;
+      padding: 100px;
+      text-align: center;
+      margin-top: 200px;
+    }
+    footer h3 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    footer p {
+      color: #666;
+      font-size: 18px;
+      text-align: left;
+      line-height: 1.5;
+    }
+    #disclaimerContainer,
+    #termsContainer {
+      margin-bottom: 50px;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1000px;
+      text-align: left;
+    }
+
+    .wordButton {
+      margin: 5px;
+      font-size: 16px;
+    }
+    .wordButton:hover {
+      background-color: #e0e0e0;
+    }
+    #wordButtonContainer {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin-top: 70px;
+      margin-bottom: 50px;
+      margin-right: 50px;
+      margin-left: 500px;
+    }
+    .wordButton.clicked {
+      background-color: yellow; /* Change the background color to yellow */
+    }
+
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border-radius: 4px;
+      font-size: 16px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .toast.show {
+      opacity: 1;
+    }
+
+
+    .hovered-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+    .hovered-button button {
+      position: relative;
+      min-width: 200px;
+      height: 50px;
+      padding: 10px;
+      border: none;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      box-shadow: 6px 6px 12px #d9d9d9, -6px -6px 12px #ffffff;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+      font-size: 18px;
+      margin: 20px;
+      border: 2px solid #4CAF50;
+    }
+    .hovered-button button:hover {
+      box-shadow: 8px 8px 16px #d9d9d9, -8px -8px 16px #ffffff;
+      border-color: #ffffff;
+    }
+    .hovered-button button:active {
+      box-shadow: 4px 4px 8px #d9d9d9, -4px -4px 8px #ffffff;
+      border-color: #ffffff;
+    }
+
+    /*Small devices (landscape phones, 576px and up)*/
+    @media (min-width: 576px) {
+
+    }
+
+    /*Medium devices (tablets, 768px and up)*/
+    @media (min-width: 768px) {
+
+    }
+
+    /*Large devices (desktops, 992px and up)*/
+    @media (min-width: 992px) {
+
+    }
+
+    /*Extra large devices (large desktops, 1200px and up)*/
+    @media (min-width: 1200px) {
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1>
+  </header>
+
+    <p class="description-text">Welcome to our website! Here, we've got a cool feature that helps you keep your important information safe and private. We'll mask it with some cleverly generated random strings before sending it off to the AI. And the best part? You can easily swap those random strings back to the original information with just a click, thanks to our smart AI output. So, no worries, your data stays protected and under your control!</p>
+
+    <div id="toast" class="toast">Text has been copied!</div>
     
-          /* Select the text in the textarea */
-          textarea.select();
-    
-          /* Copy the selected text to the clipboard */
-          document.execCommand("copy");
-    
-          /* Deselect the textarea */
-          textarea.setSelectionRange(0, 0);
-    
-          /* Provide feedback to the user */
-          alert("Text has been copied!");
-        }
-
-        function copyTextareaTwo() {
-          /* Get the textarea element */
-          var textarea = document.getElementById("textarea2");
-    
-          /* Select the text in the textarea */
-          textarea.select();
-    
-          /* Copy the selected text to the clipboard */
-          document.execCommand("copy");
-    
-          /* Deselect the textarea */
-          textarea.setSelectionRange(0, 0);
-    
-          /* Provide feedback to the user */
-          alert("Text has been copied!");
-        }
-
-        function replaceKeysWithValues() {
-          var textarea = document.getElementById("textarea2");
-          var text = textarea.value;
-
-          for (var key in keyValuePairs) {
-            if (keyValuePairs.hasOwnProperty(key)) {
-              var value = keyValuePairs[key];
-              var regex = new RegExp(key, "gi"); // "gi" flag for case-insensitive matching
-              text = text.replace(regex, value);
-            }
-          }
-
-          textarea.value = text;
-        }
-
-
-        function clearTextarea() {
-          var textarea = document.getElementById("textarea1");
-          textarea.value = ""; // Clear the textarea content
-        }
-
-        function clearTextareaTwo() {
-          var textarea = document.getElementById("textarea2");
-          textarea.value = ""; // Clear the textarea content
-        }
-
-        function clearButtonLabel() {
-          var labelButton = document.getElementById("addBtn");
-          labelButton.textContent = ""; // Clear the button label
-        }
-      </script>
-      <style>
-
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
-
-        body {
-          font-family: Arial, Helvetica, sans-serif;
-        }
-
-        #logo-font {
-          letter-spacing: 0.5px!important;
-          font-family: "Montserrat", sans-serif!important;
-          text-transform: uppercase;
-          text-shadow: 0 1px 2px #bdbdbd;
-          font-size: 25px;
-          font-weight: 300;
-          margin-left: 50px;
-          margin-top: 20px;
-          margin-bottom: 50px;
-        }
-
-        .description-text {
-          font-size: 22px;
-          line-height: 1.5;
-          margin-bottom: 20px;
-          margin-left: 50px;
-          font-family: 'Red Hat Text', sans-serif;
-          width: 1000px;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        #inputContainer {
-          position: relative;
-          width: 1000px;
-        }
-        .description-texttwo {
-          font-size: 18px;
-          line-height: 1.5;
-          margin-bottom: 20px;
-          margin-left: 0px;
-          margin-right: 40px;
-          font-family: 'Red Hat Text', sans-serif;
-          width: 300px;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        #button1 {
-          position: absolute;
-          top: 0;
-          right: 0;
-          margin-top: 20px;
-          margin-right: 0px;
-          padding: 10px;
-          color: white;
-          background: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 18px;
-          width: 120px;
-        }
-        #textarea1 {
-          width: 100%;
-          height: 200px;
-          resize: none;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          padding-top: 70px;
-          padding-left: 15px;
-          padding-right: 15px;
-          padding-bottom: 15px;
-          font-size: 18px;
-        }
-        #containerOne {
-          display: flex;
-          justify-content: left;
-          align-items: center;
-          margin: 50px;
-        }
-        #buttonThreeContainer {
-          margin-left: 70px;
-        }
-        #button3 {
-          width: 100px;
-          height: 100px;
-          background: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
-          border: none;
-          border-radius: 50%;
-          cursor: pointer;
-          color: white;
-          font-size: 18px;
-        }
-        #button3:hover {
-          transform: translateY(-2px);
-        }
-        #button3:active {
-          transform: translateY(0);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
-        }
-
-
-        #buttonContainer {
-          display: flex;
-          justify-content: left;
-          margin: 50px;
-          align-items: center;
-        }
-        #addBtn {
-          position: relative;
-          width: 500px;
-          height: 100px;
-          border: none;
-          background-color: #f0f0f0;
-          border-radius: 10px;
-          box-shadow: 6px 6px 12px #d9d9d9, -6px -6px 12px #ffffff;
-          overflow: hidden;
-          cursor: pointer;
-          transition: box-shadow 0.3s ease;
-          font-size: 18px;
-        }
-        #addBtn:hover {
-          box-shadow: 8px 8px 16px #d9d9d9, -8px -8px 16px #ffffff;
-        }
-        #addBtn:active {
-          box-shadow: 4px 4px 8px #d9d9d9, -4px -4px 8px #ffffff;
-        }
-        #button4 {
-          width: 100px;
-          height: 100px;
-          background: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
-          border: none;
-          border-radius: 50%;
-          cursor: pointer;
-          color: white;
-          font-size: 18px;
-          margin-left: 70px;
-        }
-        #button4:hover {
-          transform: translateY(-2px);
-        }
-        #button4:active {
-          transform: translateY(0);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
-        }
-
-        #keyContainer {
-          display: flex;
-          justify-content: left;
-          margin: 50px;
-        }
-        #keyValuePairs {
-          margin-bottom: 20px;
-          font-size: 18px;
-        }
-        .keyValuePair {
-          margin-bottom: 20px;
-          display: flex;
-          align-items: center;
-        }
-        .key {
-          font-weight: bold;
-          margin-right: 20px;
-          color: #333;
-          font-size: 18px;
-        }
-        .deleteBtn {
-          margin-left: 20px;
-          background: transparent;
-          border: 2px solid #f44336;
-          cursor: pointer;
-          font-size: 16px;
-          color: #f44336;
-          transition: color 0.3s ease;
-          padding: 5px;
-          border-radius: 5px;
-        }
-        .deleteBtn:hover {
-          background: #f44336;
-          color: white;
-        }
-
-        #containerTwo {
-          display: flex;
-          justify-content: left;
-          align-items: center;
-          margin: 50px;
-        }
-        #outputContainer {
-          position: relative;
-          width: 1000px;
-        }
-        #button2 {
-          position: absolute;
-          top: 0;
-          right: 0;
-          margin-top: 20px;
-          margin-right: 150px;
-          padding: 10px;
-          color: white;
-          background: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 18px;
-          width: 120px!important;
-        }
-        #textarea2 {
-          width: 100%;
-          height: 200px;
-          resize: none;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          padding-top: 70px;
-          padding-left: 15px;
-          padding-right: 15px;
-          padding-bottom: 15px;
-          font-size: 18px;
-        }
-        #button5 {
-          width: 100px;
-          height: 100px;
-          background: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
-          border: none;
-          border-radius: 50%;
-          cursor: pointer;
-          color: white;
-          font-size: 18px;
-          margin-left: 70px;
-        }
-        #button5:hover {
-          transform: translateY(-2px);
-        }
-        #button5:active {
-          transform: translateY(0);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
-        }
-        #button6 {
-          position: absolute;
-          top: 0;
-          right: 0;
-          margin-top: 20px;
-          margin-right: 0px;
-          padding: 10px;
-          color: white;
-          background: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 18px;
-          width: 120px;
-        }
-
-        #buttonTwoContainer {
-          display: flex;
-          justify-content: left;
-          margin: 50px;
-        }
-        .modal {
-          display: none;
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.4);
-        }
-        .modal-content {
-          background-color: #f9f9f9;
-          margin: 20% auto;
-          padding: 20px;
-          width: 300px;
-          border-radius: 4px;
-        }
-        .modal-content p {
-          margin: 0 0 30px;
-          line-height: 1.5;
-        }
-        .modal-content button {
-          margin-right: 10px;
-        }
-        .button-primary {
-          background-color: #2980b9;
-          color: #fff;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 10px;
-          font-size: 18px;
-          cursor: pointer;
-        }
-        .button-primary:hover {
-          background-color: #1c6ea4;
-        }
-        .button-secondary {
-          background-color: #f1f1f1;
-          color: #333;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          font-size: 16px;
-          cursor: pointer;
-        }
-        .button-secondary:hover {
-          background-color: #ddd;
-        }
-
-        footer {
-          background-color: #f8f8f8;
-          padding: 100px;
-          text-align: center;
-          margin-top: 200px;
-        }
-
-        footer h3 {
-          color: #333;
-          font-size: 24px;
-          margin-bottom: 10px;
-          text-align: center;
-          font-weight: bold;
-        }
-
-        footer p {
-          color: #666;
-          font-size: 18px;
-          text-align: left;
-          line-height: 1.5;
-        }
-
-        #disclaimerContainer,
-        #termsContainer {
-          margin-bottom: 50px;
-          margin-left: auto;
-          margin-right: auto;
-          max-width: 1000px;
-          text-align: left;
-        }
-
-
-      </style>
-    </head>
-    <body>
-    
-      <header>
-        <h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1>
-      </header>
-
-      <p class="description-text">This website helps you mask important information and replace it with randomly generated strings before sending it to AI. You can easily replace the random strings with the original information from the AI output.</p>
-
-      <div id="containerOne">
-        <p class="description-texttwo">Step 1: Enter your information and highlight words in a left-to-right sequence. The highlighted words will be shown in the button below.</p>
-        <div id="inputContainer">
-          <button onclick="copyTextarea()" id="button1">Copy</button>
-          <textarea id="textarea1" placeholder="Enter text here"></textarea>
-        </div>
-        <div id="buttonThreeContainer">
+    <div id="containerOne">
+      <p class="description-texttwo">Step 1: Type in your information and hover over the important words to highlight them. Those words will show up in a button right in the middle of the input box. When you click the button, the selected words will replace the text in the input field. Or if you prefer, you can click the "Select" button. All the words you typed will be shown below the input box, and you can pick the specific words you want. The selected words will be added to the label of a button displayed right in the center of the screen. Give it a click, and watch those words instantly replace the text in the input field.</p>
+      <div id="inputContainer">
+        <button onclick="convertToButtons()" id="button7">Select</button>
+        <button onclick="copyTextarea()" id="button1">Copy</button>
+        <textarea id="textarea1" placeholder="Enter text here"></textarea>
+        <div class="hovered-button"></div>
+      </div>
+      <div id="buttonThreeContainer">
+        <div class="row">
           <button onclick="clearTextarea()" id="button3">Clear Input</button>
         </div>
+        <div class="row">
+          <button onclick="clearButtons()" id="removeAllButtons">Clear Buttons</button>
+        </div>
       </div>
-      
-      <div id="buttonContainer">
-        <p class="description-texttwo">Step 2: After highlighting the words, click the button below. The highlighted words will be automatically replaced in the input above, and you can then copy the modified text to use with AI.</p>
-        <button id="addBtn"></button>
-        <button onclick="clearButtonLabel()" id="button4">Clear Button Label</button>
-      </div>
-      
+    </div>
+
+    <div id="wordButtonContainer">
+
+    </div>
+
+    <button id="addBtn"></button>
+    <button onclick="clearButtonLabel()" id="button4">Clear Button Label</button>
+    <button onclick="closeButton()" id="closeButton">Close</button>
+    
+    <div id="buttonContainer">
+      <p class="description-texttwo">Step 2: Take a moment to review the key-value pairs and make sure everything looks good. If you spot any mistakes, no worries! You can simply click the delete button, and all the keys will be replaced with the original text once again.</p>
       <div id="keyContainer">
         <p class="description-texttwo"></p>
         <div id="keyValuePairs"></div>
       </div>
+    </div>
 
-      <div id="containerTwo">
-        <p class="description-texttwo">Step 3: Copy the AI-generated output and click the Replace button to substitute the random strings with the original information. Finally, you can copy the modified output by clicking the Copy button.</p>
-        <div id="outputContainer">
-          <button onclick="replaceKeysWithValues()" id="button2">Replace</button>
-          <button onclick="copyTextareaTwo()" id="button6">Copy</button>
-          <textarea id="textarea2" placeholder="Enter AI output here"></textarea>
-        </div>
-        <div>
-          <button onclick="clearTextareaTwo()" id="button5">Clear Output</button>
+
+    <div id="containerTwo">
+      <p class="description-texttwo">Step 3: Grab the AI-generated output and give it a good ol' copy. When you're ready, hit that Replace button to swap out those random strings with the original information. You can then easily copy the modified output by simply clicking the Copy button.</p>
+      <div id="outputContainer">
+        <button onclick="replaceKeysWithValues()" id="button2">Replace</button>
+        <button onclick="copyTextareaTwo()" id="button6">Copy</button>
+        <textarea id="textarea2" placeholder="Enter AI output here"></textarea>
+      </div>
+      <div>
+        <button onclick="clearTextareaTwo()" id="button5">Clear Output</button>
+      </div>
+    </div>
+
+    <div id="buttonTwoContainer">
+      <p class="description-texttwo">Click the Refresh Page button to reset the process, clearing all information and starting afresh.</p>
+      <button class="button-primary" onclick="showConfirmation()">Refresh Page</button>
+      <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+          <p>Are you sure you want to refresh the page? All information will be cleared.</p>
+          <button class="button-secondary" onclick="refreshPage()">Yes, Refresh</button>
+          <button class="button-secondary" onclick="hideConfirmation()">Cancel</button>
         </div>
       </div>
+    </div>
 
-      <div id="buttonTwoContainer">
-        <p class="description-texttwo">Click the Refresh Page button to reset the process, clearing all information and starting afresh.</p>
-        <button class="button-primary" onclick="showConfirmation()">Refresh Page</button>
-        <div id="confirmationModal" class="modal">
-          <div class="modal-content">
-            <p>Are you sure you want to refresh the page? All information will be cleared.</p>
-            <button class="button-secondary" onclick="refreshPage()">Yes, Refresh</button>
-            <button class="button-secondary" onclick="hideConfirmation()">Cancel</button>
-          </div>
-        </div>
-      </div>
+  <footer>
+    <div id="disclaimerContainer">
+      <h3>Disclaimer</h3>
+      <p>
+        The information provided on this website is for general purposes only. We make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information contained on the website or the services provided. Your use of the website and its services is at your own risk.
+      </p>
+    </div>
 
-      <footer>
-        <div id="disclaimerContainer">
-          <h3>Disclaimer</h3>
-          <p>
-            The information provided on this website is for general purposes only. We make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information contained on the website or the services provided. Your use of the website and its services is at your own risk.
-          </p>
-        </div>
+    <div id="termsContainer">
+      <h3>Terms of Use</h3>
+      <p>
+        By accessing and using this website, you agree to comply with and be bound by the following terms and conditions:
+        <br><br>
+        - The content of this website is for informational purposes only and should not be considered as professional or legal advice.
+        <br>
+        - We reserve the right to modify, suspend, or terminate any aspect of the website and its services at any time without prior notice.
+        <br>
+        - You are responsible for maintaining the confidentiality of your account and any activities conducted under your account.
+        <br>
+        - This website may contain links to external websites that are not under our control. We are not responsible for the content or availability of these sites.
+        <br>
+        - We do not guarantee the accuracy, reliability, or completeness of any information on the website.
+        <br><br>
+        By using this website, you acknowledge that you have read and understood these terms and conditions and agree to be bound by them.
+      </p>
+    </div>
+  </footer>
 
-        <div id="termsContainer">
-          <h3>Terms of Use</h3>
-          <p>
-            By accessing and using this website, you agree to comply with and be bound by the following terms and conditions:
-            <br><br>
-            - The content of this website is for informational purposes only and should not be considered as professional or legal advice.
-            <br>
-            - We reserve the right to modify, suspend, or terminate any aspect of the website and its services at any time without prior notice.
-            <br>
-            - You are responsible for maintaining the confidentiality of your account and any activities conducted under your account.
-            <br>
-            - This website may contain links to external websites that are not under our control. We are not responsible for the content or availability of these sites.
-            <br>
-            - We do not guarantee the accuracy, reliability, or completeness of any information on the website.
-            <br><br>
-            By using this website, you acknowledge that you have read and understood these terms and conditions and agree to be bound by them.
-          </p>
-        </div>
-      </footer>
+  
 
-      
+  <script>
+    var keyValuePairs = {}; // Object to store key-value pairs
 
-      <script>
-        var keyValuePairs = {}; // Object to store key-value pairs
-    
-        function createKeyValuePair(key, value) {
-          var keyValuePair = document.createElement("div");
-          keyValuePair.classList.add("keyValuePair");
-    
-          var keyElement = document.createElement("span");
-          keyElement.classList.add("key");
-          keyElement.textContent = key;
-          keyValuePair.appendChild(keyElement);
-    
-          var valueElement = document.createTextNode(value);
-          keyValuePair.appendChild(valueElement);
-    
-          var deleteButton = document.createElement("button");
-          deleteButton.classList.add("deleteBtn");
-          deleteButton.textContent = "Delete";
-          deleteButton.addEventListener("click", function() {
-            keyValuePair.remove();
-            delete keyValuePairs[key]; // Remove the key-value pair from the object
+    function createKeyValuePair(key, value) {
+      var keyValuePair = document.createElement("div");
+      keyValuePair.classList.add("keyValuePair");
+
+      var keyElement = document.createElement("span");
+      keyElement.classList.add("key");
+      keyElement.textContent = key;
+      keyValuePair.appendChild(keyElement);
+
+      var valueElement = document.createTextNode(value);
+      keyValuePair.appendChild(valueElement);
+
+      var deleteButton = document.createElement("button");
+      deleteButton.classList.add("deleteBtn");
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", function() {
+        // Replace all occurrences of the key with its original text
+        var textarea1 = document.getElementById("textarea1");
+        var originalText = keyValuePairs[key];
+        var modifiedText = textarea1.value.replace(new RegExp(key, 'g'), originalText);
+        textarea1.value = modifiedText;
+        keyValuePair.remove();
+        delete keyValuePairs[key]; // Remove the key-value pair from the object
+      });
+
+      keyValuePair.appendChild(deleteButton);
+
+      return keyValuePair;
+    }
+
+    document.getElementById("addBtn").addEventListener("click", function() {
+      var labelButton = document.getElementById("addBtn");
+      var textarea1 = document.getElementById("textarea1");
+      var value = labelButton.textContent.trim();
+      if (value !== "") {
+        var key = generateRandomAlphabetKey(10); // Randomly generated key using alphabets
+        keyValuePairs[key] = value; // Add the key-value pair to the object
+        textarea1.value = textarea1.value.replaceAll(value, key); // Replace words in textarea1 with key
+        var keyValuePairsDiv = document.getElementById("keyValuePairs");
+        var keyValuePair = createKeyValuePair(key, value);
+        keyValuePairsDiv.appendChild(keyValuePair);
+        labelButton.textContent = ""; // Clear the button label
+      }
+    });
+
+    function generateRandomAlphabetKey(length) {
+      var alphabet = "abcdefghijklmnopqrstuvwxyz";
+      var key = "";
+      for (var i = 0; i < length; i++) {
+        var randomIndex = Math.floor(Math.random() * alphabet.length);
+        key += alphabet.charAt(randomIndex);
+      }
+      return key;
+    }
+
+    // Display existing key-value pairs on page load
+    window.addEventListener("load", function() {
+      var keyValuePairsDiv = document.getElementById("keyValuePairs");
+      for (var key in keyValuePairs) {
+        if (keyValuePairs.hasOwnProperty(key)) {
+          var keyValuePair = createKeyValuePair(key, keyValuePairs[key]);
+          keyValuePairsDiv.appendChild(keyValuePair);
+        }
+      }
+    });
+
+    function showConfirmation() {
+      var modal = document.getElementById("confirmationModal");
+      modal.style.display = "block";
+    }
+
+    function hideConfirmation() {
+      var modal = document.getElementById("confirmationModal");
+      modal.style.display = "none";
+    }
+
+    function refreshPage() {
+      window.location.reload();
+    }
+
+    function convertToButtons() {
+      var textarea = document.getElementById('textarea1');
+      var text = textarea.value.trim();
+      var words = text.split(/\b/); // Splitting text at word boundaries
+
+      var buttonContainer = document.getElementById('wordButtonContainer');
+      buttonContainer.innerHTML = ''; // Clear previous buttons
+
+      words.forEach(function(word) {
+        if (word.match(/^\w+$/)) { // Check if the word consists of only alphabets and/or numbers
+          var button = document.createElement('button');
+          button.className = 'wordButton';
+          button.innerText = word;
+          button.addEventListener('click', function() {
+            appendToButtonLabel(word);
+            button.classList.add('clicked');
+            var labelButton = document.getElementById("addBtn");
+            var button4 = document.getElementById("button4");
+            var closeButton = document.getElementById("closeButton");
+            
+            labelButton.style.display = "block"; // Show the addBtn
+            button4.style.display = "block"; // Show the button4
+            closeButton.style.display = "block"; // Show the closeButton
           });
-          keyValuePair.appendChild(deleteButton);
-    
-          return keyValuePair;
+          buttonContainer.appendChild(button);
         }
-    
-        document.getElementById("addBtn").addEventListener("click", function() {
-          var labelButton = document.getElementById("addBtn");
-          var textarea1 = document.getElementById("textarea1");
-          var value = labelButton.textContent.trim();
-          if (value !== "") {
-            var key = generateRandomAlphabetKey(10); // Randomly generated key using alphabets
-            keyValuePairs[key] = value; // Add the key-value pair to the object
-            textarea1.value = textarea1.value.replaceAll(value, key); // Replace words in textarea1 with key
-            var keyValuePairsDiv = document.getElementById("keyValuePairs");
-            var keyValuePair = createKeyValuePair(key, value);
-            keyValuePairsDiv.appendChild(keyValuePair);
-            labelButton.textContent = ""; // Clear the button label
-          }
-        });
+      });
+    }
 
-        function generateRandomAlphabetKey(length) {
-          var alphabet = "abcdefghijklmnopqrstuvwxyz";
-          var key = "";
-          for (var i = 0; i < length; i++) {
-            var randomIndex = Math.floor(Math.random() * alphabet.length);
-            key += alphabet.charAt(randomIndex);
-          }
-          return key;
-        }
+    function appendToButtonLabel(word) {
+      var button4 = document.getElementById('addBtn');
+      var currentLabel = button4.innerText;
 
-        document.getElementById("textarea1").addEventListener("mouseup", function() {
-          var selectedText = window.getSelection().toString().trim();
-          if (selectedText !== "") {
-            var labelButton = document.getElementById("addBtn");
-            labelButton.textContent += selectedText + " ";
-            replaceSelectedText(selectedText);
-          }
-        });
+      if (currentLabel === '') {
+        button4.innerText = word;
+      } else {
+        button4.innerText += ' ' + word;
+      }
+    }
 
-        document.getElementById("textarea1").addEventListener("touchend", function(event) {
-          var selectedText = window.getSelection().toString().trim();
-          if (selectedText !== "") {
-            var labelButton = document.getElementById("addBtn");
-            labelButton.textContent += selectedText + " ";
-            replaceSelectedText(selectedText);
-          }
-        });
-    
-        // Display existing key-value pairs on page load
-        window.addEventListener("load", function() {
+    function adjustTextareaHeight(textarea) {
+      textarea.style.height = "auto"; // Reset height to auto
+      textarea.style.height = textarea.scrollHeight + "px"; // Set height based on content
+    }
+
+    // Get references to both textarea elements
+    var textarea1 = document.getElementById("textarea1");
+    var textarea2 = document.getElementById("textarea2");
+
+    // Call the adjustTextareaHeight function for each textarea whenever the content changes
+    textarea1.addEventListener("input", function() {
+      adjustTextareaHeight(textarea1);
+    });
+    textarea2.addEventListener("input", function() {
+      adjustTextareaHeight(textarea2);
+    });
+
+    // Call the adjustTextareaHeight function for each textarea on page load (if they have initial content)
+    window.addEventListener("load", function() {
+      adjustTextareaHeight(textarea1);
+      adjustTextareaHeight(textarea2);
+    });
+
+
+
+  </script>
+
+  <script>
+    // Get the textarea element
+    var textarea = document.getElementById("textarea1");
+
+    // Get the button and its container
+    var buttonContainer = document.querySelector(".hovered-button");
+
+    // Create an array to store the hovered words
+    var hoveredWords = [];
+
+    // Create a button dynamically at the center of the screen
+    function createButton(word) {
+      var button = document.createElement("button");
+      button.innerHTML = word;
+
+      button.addEventListener("click", function() {
+        var textarea1 = document.getElementById("textarea1");
+        var value = button.textContent.trim();
+        if (value !== "") {
+          var key = generateRandomAlphabetKey(10); // Randomly generated key using alphabets
+          keyValuePairs[key] = value; // Add the key-value pair to the object
+          textarea1.value = textarea1.value.replaceAll(value, key); // Replace words in textarea1 with key
           var keyValuePairsDiv = document.getElementById("keyValuePairs");
-          for (var key in keyValuePairs) {
-            if (keyValuePairs.hasOwnProperty(key)) {
-              var keyValuePair = createKeyValuePair(key, keyValuePairs[key]);
-              keyValuePairsDiv.appendChild(keyValuePair);
-            }
-          }
-        });
-
-        function showConfirmation() {
-          var modal = document.getElementById("confirmationModal");
-          modal.style.display = "block";
+          var keyValuePair = createKeyValuePair(key, value);
+          keyValuePairsDiv.appendChild(keyValuePair);
         }
 
-        function hideConfirmation() {
-          var modal = document.getElementById("confirmationModal");
-          modal.style.display = "none";
-        }
+        // Close the button by removing it from the container
+        buttonContainer.removeChild(button);
+      });
 
-        function refreshPage() {
-          window.location.reload();
-        }
+      // Append the button to the button container
+      buttonContainer.appendChild(button);
+    }
 
-      </script>
-    </body>
-    </html>
-    
+    textarea.addEventListener("mouseup", function(event) {
+      // Get the target element that triggered the event
+      var target = event.target;
+
+      // Get the word under the mouse cursor
+      var word = window.getSelection().toString().trim();
+
+      // Check if the word is not empty and not already in the array
+      if (word !== "") {
+        // Add the word to the array
+        hoveredWords.push(word);
+
+        // Create a button with the hovered word
+        createButton(word);
+
+        // Display the button container
+        buttonContainer.style.display = "block";
+      }
+    });
+
+    textarea.addEventListener("touchend", function(event) {
+      // Get the target element that triggered the event
+      var target = event.target;
+
+      // Get the word under the mouse cursor
+      var word = window.getSelection().toString().trim();
+
+      // Check if the word is not empty and not already in the array
+      if (word !== "") {
+        // Add the word to the array
+        hoveredWords.push(word);
+
+        // Create a button with the hovered word
+        createButton(word);
+
+        // Display the button container
+        buttonContainer.style.display = "block";
+      }
+    });
+
+  </script>
+
+</body>
+</html>
+
+
+

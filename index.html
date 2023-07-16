@@ -558,13 +558,12 @@
     footer p {
       color: #666;
       font-size: 18px;
-      text-align: left;
       line-height: 1.5;
     }
-    footer span {
-      color: #666;
-      font-size: 18px;
-      line-height: 1.5;
+    .footerBody {
+      text-align: left;
+    }
+    .footerNotice {
       text-align: center;
       font-weight: bold;
       margin-top: 100px;
@@ -659,8 +658,8 @@
   @media (min-width: 768px) {
     textarea:focus {
       outline: none;
-      border: 2px solid black;
-      box-shadow: 0 0 5px rgba(70, 130, 180, 0.5);
+      border: 1px solid black;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
     }
     
     #logo-font {
@@ -972,14 +971,14 @@
   <footer>
     <div id="disclaimerContainer">
       <h3>Disclaimer</h3>
-      <p>
+      <p class="footerBody">
         The information provided on this website is for general purposes only. We make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information contained on the website or the services provided. Your use of the website and its services is at your own risk.
       </p>
     </div>
 
     <div id="termsContainer">
       <h3>Terms of Use</h3>
-      <p>
+      <p class="footerBody">
         By accessing and using this website, you agree to comply with and be bound by the following terms and conditions:
         <br><br>
         - The content of this website is for informational purposes only and should not be considered as professional or legal advice.
@@ -994,7 +993,7 @@
         <br><br>
         By using this website, you acknowledge that you have read and understood these terms and conditions and agree to be bound by them.
       </p>
-      <span>&copy; 2023 sidekickspace.com. All rights reserved.</span>
+      <p class="footerNotice">&copy; 2023 sidekickspace.com. All rights reserved.</p>
     </div>
   </footer>
 

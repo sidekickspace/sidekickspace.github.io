@@ -472,10 +472,9 @@
       color: #000000;
       cursor: pointer;
       font-size: 16px;
-      font-weight: 500;
       padding: 10px 20px;
       transition: all 0.3s ease;
-      width: 70vw;
+      width: 60vw;
       margin-bottom: 10px;
       text-transform: capitalize;
     }
@@ -493,10 +492,9 @@
       color: #000000;
       cursor: pointer;
       font-size: 16px;
-      font-weight: 500;
       padding: 10px 20px;
       transition: all 0.3s ease;
-      width: 70vw;
+      width: 60vw;
       margin-bottom: 10px;
       text-transform: capitalize;
     }
@@ -550,6 +548,8 @@
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
     }
     .right-half {
+        flex: 1;
+        over-flow: auto;
         display: none;
         position: relative;
         height: 500px;
@@ -736,6 +736,8 @@
       display: none;
       position: relative;
       height: 600px;
+      over-flow: auto;
+      flex: 1;
     }
     #keyValuePairs {
       margin-bottom: 20px;
@@ -1280,9 +1282,11 @@
     }
     /* Define the right-half with a div element */
     .right-half {
-        display: flex;
-        position: relative;
-        height: 650px;
+      over-flow: auto;
+      flex: 1;
+      display: flex;
+      position: relative;
+      height: 650px;
     }
     /* Define the <div> to occupy full height and width of right-half */
     .right-half div {
@@ -1408,6 +1412,8 @@
       display: flex;
       position: relative;
       height: 800px;
+      over-flow: auto;
+      flex: 1;
     }
     #keyValuePairs {
       margin-bottom: 20px;

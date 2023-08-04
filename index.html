@@ -53,7 +53,6 @@
       /* Provide feedback to the user */
       showToast("Text has been copied!");
 
-      /* Redirect the user to www.google.com */
       window.location.href = "https://chat.openai.com/?model=text-davinci-002-render-sha";
      
     }
@@ -145,72 +144,6 @@
     }
     .leftColumn {
       display: none;
-    }
-    /* Styling for the button */
-    #toggleButton {
-      padding: 10px 20px;
-      background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      width: 90vw;
-      box-shadow: -8px -8px 16px #ffffff, 8px 8px 16px #d1d9e6;
-      margin-bottom: 20px;
-    }
-    .toggleButton:hover {
-      box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px #d1d9e6;
-    }
-    .toggleButton:active {
-      box-shadow: inset -4px -4px 8px #ffffff, inset 4px 4px 8px #d1d9e6;
-    }
-    #leftButtonContainerTwo {
-      display: none;
-    }
-    #leftButtonContainerTwo.active  {
-      display: block;
-    }
-    .addButton {
-      background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
-      border: none;
-      border-radius: 10px;
-      box-shadow: -8px -8px 16px #ffffff, 8px 8px 16px #d1d9e6;
-      color: #000000;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: 500;
-      padding: 10px 20px;
-      transition: all 0.3s ease;
-      width: 90vw;
-      margin-bottom: 20px;
-      text-transform: capitalize;
-    }
-    .addButton:hover {
-      box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px #d1d9e6;
-    }
-    .addButton:active {
-      box-shadow: inset -4px -4px 8px #ffffff, inset 4px 4px 8px #d1d9e6;
-    }
-    .addButtonNew {
-      background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
-      border: none;
-      border-radius: 10px;
-      box-shadow: -8px -8px 16px #ffffff, 8px 8px 16px #d1d9e6;
-      color: #000000;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: 500;
-      padding: 10px 20px;
-      transition: all 0.3s ease;
-      width: 90vw;
-      margin-bottom: 20px;
-      text-transform: capitalize;
-    }
-    .addButtonNew:hover {
-      box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px #d1d9e6;
-    }
-    .addButtonNew:active {
-      box-shadow: inset -4px -4px 8px #ffffff, inset 4px 4px 8px #d1d9e6;
     }
     #addMoreBtn {
       background: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
@@ -459,7 +392,7 @@
     }
     #textarea1 {
       border-radius: 0 0 10px 10px;
-      padding-top: 80px;
+      padding-top: 100px;
       padding-left: 20px;
       padding-right: 20px;
       padding-bottom: 20px;
@@ -494,10 +427,82 @@
       font-size: 26px;
       position: absolute;
       top: 20px;
-      right: 70px;
+      right: 80px;
       display: flex; /* Use flex display */
       justify-content: center; /* Center horizontally */
       align-items: center; /* Center vertically */
+    }
+    #toggleButton {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 50vw;
+      display: flex; /* Use flex display */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      font-size: 16px;
+      height: 40px;
+    }
+    #leftButtonContainerTwo {
+      display: none;
+      position: absolute;
+      top: 60px;
+      background: #f0f0f0;
+      width: 50vw;
+      display: flex; /* Use flex display */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      height: 300px;
+    }
+    #leftButtonContainerTwo.active  {
+      display: block;
+    }
+    .addButton {
+      background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+      border: none;
+      border-radius: 10px;
+      box-shadow: -8px -8px 16px #ffffff, 8px 8px 16px #d1d9e6;
+      color: #000000;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+      width: 40vw;
+      margin-bottom: 10px;
+      text-transform: capitalize;
+    }
+    .addButton:hover {
+      box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px #d1d9e6;
+    }
+    .addButton:active {
+      box-shadow: inset -4px -4px 8px #ffffff, inset 4px 4px 8px #d1d9e6;
+    }
+    .addButtonNew {
+      background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+      border: none;
+      border-radius: 10px;
+      box-shadow: -8px -8px 16px #ffffff, 8px 8px 16px #d1d9e6;
+      color: #000000;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+      width: 40vw;
+      margin-bottom: 10px;
+      text-transform: capitalize;
+    }
+    .addButtonNew:hover {
+      box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px #d1d9e6;
+    }
+    .addButtonNew:active {
+      box-shadow: inset -4px -4px 8px #ffffff, inset 4px 4px 8px #d1d9e6;
     }
     #button1 {
       position: absolute;
@@ -1220,6 +1225,15 @@
     #clearTextareaButton {
       display: none;
     }
+    #toggleButton {
+      display: none;
+    }
+    #leftButtonContainerTwo {
+      display: none;
+    }
+    #leftButtonContainerTwo.active  {
+      display: none;
+    }
     #button1 {
       position: absolute;
       bottom: 20px;
@@ -1522,6 +1536,14 @@
         </div>
         <div class="bottom-row">
             <div class="left-half">
+              <button id="toggleButton">Insert Prompt Words</button>
+              <div id="leftButtonContainerTwo">
+                <button class="addButton" data-value="Can you summarize this: ">Write Summary</button>
+                <button class="addButton" data-value="Please provide me with a list of popular websites (rank them with popularity): ">Search Online</button>
+                <button class="addButton" data-value="Please write me an email: ">Compose Email</button>
+                <button class="addButton" data-value="Please write me Python code: ">Write Python Code</button>
+                <button class="addButton" data-value="Please write me HTML, CSS and Javascript (if necessary) code: ">Write HTML Code</button>
+              </div>
               <button onclick="copyTextarea()" id="button1">Copy & Go</button>
               <button id="textareaButtonOne">&rightarrow;</button>
               <button onclick="clearTextarea()" id="clearTextareaButton">&circlearrowright;</button>

@@ -415,12 +415,14 @@
     .bottom-row {
         width: 90vw;
         border-radius: 0 0 10px 10px; 
+        height: 500px;
     }
     /* Define the left-half with textarea */
     .left-half {
         width: 90vw;
         position: relative;
         margin-bottom: 50px;
+        height: 500px;
     }
     /* For webkit-based browsers (Chrome, Safari) */
     /* Customize the scrollbar track */
@@ -466,16 +468,19 @@
     #textareaButtonOne {
       display: block;
       color: black;
-      background: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);
-      border: none;
-      border-radius: 10px;
+      background: white;
+      border: 1px solid black;
+      border-radius: 50%;
       cursor: pointer;
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
       font-size: 26px;
       position: absolute;
       top: 20px;
       right: 20px;
+      display: flex; /* Use flex display */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
     }
     #button1 {
       position: absolute;
@@ -525,6 +530,7 @@
         display: none;
         overflow-y: auto;
         position: relative;
+        height: 500px;
     }
     /* Define the <div> to occupy full height and width of right-half */
     .right-half div {
@@ -710,6 +716,7 @@
       display: none;
       overflow-y: auto;
       position: relative;
+      height: 500px;
     }
     #keyValuePairs {
       margin-bottom: 20px;

@@ -395,7 +395,7 @@
     }
     #textarea1 {
       border-radius: 0 0 10px 10px;
-      padding-top: 100px;
+      padding-top: 80px;
       padding-left: 20px;
       padding-right: 20px;
       padding-bottom: 20px;
@@ -452,7 +452,7 @@
     #leftButtonContainerTwo {
       display: none;
       position: absolute;
-      top: 80px;
+      top: 60px;
       background: transparent;
       justify-content: center; /* Center horizontally */
       align-items: center; /* Center vertically */
@@ -475,7 +475,7 @@
       padding: 10px 20px;
       transition: all 0.3s ease;
       width: 200px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       text-transform: capitalize;
     }
     .addButton:hover {
@@ -495,7 +495,7 @@
       padding: 10px 20px;
       transition: all 0.3s ease;
       width: 200px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       text-transform: capitalize;
     }
     .addButtonNew:hover {
@@ -651,7 +651,7 @@
     }
     #textarea2 {
       border-radius: 10px;
-      padding-top: 100px;
+      padding-top: 80px;
       padding-left: 20px;
       padding-right: 20px;
       padding-bottom: 20px;
@@ -1848,7 +1848,7 @@
       }
     });
 
-    document.querySelectorAll("").forEach(button => {
+    document.querySelectorAll(".addButton").forEach(button => {
       button.addEventListener("click", function() {
         var value = button.dataset.value;
         var textarea1 = document.getElementById("textarea1");

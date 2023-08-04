@@ -568,6 +568,7 @@
       padding-right: 20px;
       padding-bottom: 20px;
       background: white;
+      overflow-y: auto;
     }
     #wordButtonContainerButton {
       display: block;
@@ -673,7 +674,7 @@
       left: 20px;
     }
     #keyContainer {
-      height: 600px; /* Set the maximum height to 650px */
+      height: 600px;
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding-top: 80px;
       padding-left: 20px;
@@ -681,6 +682,7 @@
       padding-bottom: 20px;
       background: white;
       border-radius: 10px;
+      overflow-y: auto;
     }
     #keyContainerButton {
       display: block;
@@ -1297,9 +1299,10 @@
         background: white;
     }
     #wordButtonContainer {
-      height: 650px; /* Set the maximum height to 650px */
+      height: 650px; 
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding: 15px;
+      overflow-y: auto;
     }
     #wordButtonContainerButton {
       display:none;
@@ -1372,6 +1375,7 @@
       padding-bottom: 20px;
       background: white;
       border-radius: 10px 0 0 10px;
+      overflow-y: auto;
     }
     #restoreBtn {
       position: absolute;
@@ -1514,16 +1518,6 @@
     <div class="column">
       <div class="hiddenContainer">
         <p class="headlineText">Word Replacement</p>
-      </div>
-
-      <button id="toggleButton">Insert Prompt Words</button>
-
-      <div id="leftButtonContainerTwo">
-        <button class="addButton" data-value="Can you summarize this: ">Write Summary</button>
-        <button class="addButton" data-value="Please provide me with a list of popular websites (rank them with popularity): ">Search Online</button>
-        <button class="addButton" data-value="Please write me an email: ">Compose Email</button>
-        <button class="addButton" data-value="Please write me Python code: ">Write Python Code</button>
-        <button class="addButton" data-value="Please write me HTML, CSS and Javascript (if necessary) code: ">Write HTML Code</button>
       </div>
 
       <div id="containerOne">

@@ -1853,7 +1853,7 @@
         var value = button.dataset.value;
         var textarea1 = document.getElementById("textarea1");
         textarea1.value = value + textarea1.value;
-        document.getElementById("leftButtonContainerTwo").style.display = "none";
+        document.getElementById("leftButtonContainerTwo").classList.toggle('active');
       });
     });
 
@@ -1882,7 +1882,7 @@
           var value = newButton.dataset.value;
           var textarea1 = document.getElementById("textarea1");
           textarea1.value = value + textarea1.value;
-          document.getElementById("leftButtonContainerTwo").style.display = "none";
+          document.getElementById("leftButtonContainerTwo").classList.toggle('active');
         });
 
         buttonContainer.appendChild(newButton);
@@ -1920,7 +1920,7 @@
         var value = newButton.dataset.value;
         var textarea1 = document.getElementById("textarea1");
         textarea1.value = value + textarea1.value;
-        document.getElementById("leftButtonContainerTwo").style.display = "none";
+        document.getElementById("leftButtonContainerTwo").classList.toggle('active');
       });
 
       var buttonContainer = document.getElementById("leftButtonContainer");

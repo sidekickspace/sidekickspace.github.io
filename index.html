@@ -414,7 +414,6 @@
       position: absolute;
       top: 20px;
       right: 20px;
-      display: flex; /* Use flex display */
       justify-content: center; /* Center horizontally */
       align-items: center; /* Center vertically */
     }
@@ -431,7 +430,6 @@
       position: absolute;
       top: 20px;
       right: 80px;
-      display: flex; /* Use flex display */
       justify-content: center; /* Center horizontally */
       align-items: center; /* Center vertically */
     }
@@ -454,16 +452,17 @@
     #leftButtonContainerTwo {
       display: none;
       position: absolute;
-      top: 60px;
-      background: #f0f0f0;
-      width: 50vw;
-      display: flex; /* Use flex display */
+      top: 80px;
+      background: transparent;
+      width: 80vw;
       justify-content: center; /* Center horizontally */
       align-items: center; /* Center vertically */
       height: 300px;
+      overflow-y: auto;
+      margin-left: 20px;
     }
     #leftButtonContainerTwo.active  {
-      display: block;
+      display: flex;
     }
     .addButton {
       background: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
@@ -476,7 +475,7 @@
       font-weight: 500;
       padding: 10px 20px;
       transition: all 0.3s ease;
-      width: 40vw;
+      width: 70vw;
       margin-bottom: 10px;
       text-transform: capitalize;
     }
@@ -497,7 +496,7 @@
       font-weight: 500;
       padding: 10px 20px;
       transition: all 0.3s ease;
-      width: 40vw;
+      width: 70vw;
       margin-bottom: 10px;
       text-transform: capitalize;
     }
@@ -551,7 +550,6 @@
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
     }
     .right-half {
-        flex: 1;
         display: none;
         position: relative;
         height: 500px;
@@ -564,7 +562,6 @@
         background: white;
     }
     #wordButtonContainer {
-      max-height: 500px;
       height: 500px;
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding-top: 80px;
@@ -736,7 +733,6 @@
       font-weight: 600;
     }
     .left-halftwo {
-      flex: 1;
       display: none;
       position: relative;
       height: 600px;
@@ -1284,7 +1280,6 @@
     }
     /* Define the right-half with a div element */
     .right-half {
-        flex: 1;
         display: flex;
         position: relative;
         height: 650px;
@@ -1410,7 +1405,6 @@
       font-weight: 600;
     }
     .left-halftwo {
-      flex: 1;
       display: flex;
       position: relative;
       height: 800px;

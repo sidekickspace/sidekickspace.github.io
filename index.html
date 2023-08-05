@@ -2,15 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TYQNX9RJYP"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-TYQNX9RJYP');
-  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -50,10 +41,8 @@
       /* Deselect the textarea */
       textarea.setSelectionRange(0, 0);
 
-      /* Provide feedback to the user */
-      showToast("Text has been copied!");
-
-      window.location.href = "https://chat.openai.com/?model=text-davinci-002-render-sha";
+      /* Redirect the user to AI in a new tab */
+      window.open("https://chat.openai.com/?model=text-davinci-002-render-sha", "_blank");
      
     }
 
@@ -130,8 +119,8 @@
       text-shadow: 0 1px 2px #bdbdbd;
       font-size: 25px;
       font-weight: 300;
-      margin-left: 20px;
-      margin-top: 3vw;
+      margin-left: 3vw;
+      margin-top: 20px;
       margin-bottom: 0px;
     }
 
@@ -268,12 +257,12 @@
       font-size: 20px;
       line-height: 1.5;
       margin-left: 0px;
-      margin-top: 50px;
+      margin-top: 20px;
       font-family: 'Red Hat Text', sans-serif;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       display: block;
       color: #000000;
-      font-weight: 500;
+      font-weight: 600;
     }
     #containerOne {
         height: 600px;
@@ -456,8 +445,6 @@
       background: transparent;
       justify-content: center; /* Center horizontally */
       align-items: center; /* Center vertically */
-      height: 300px;
-      overflow-y: auto;
       margin-left: 20px;
     }
     #leftButtonContainerTwo.active  {
@@ -701,7 +688,7 @@
       flex: 1;
     }
     #keyContainer {
-      height: 600px;
+      height: 500px;
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding-top: 80px;
       padding-left: 20px;
@@ -796,6 +783,7 @@
       border-radius: 10px;
       font-size: 18px;
       cursor: pointer;
+      margin-left: 0px;
     }
     .button-primary:hover {
       background: #4481eb;
@@ -1277,8 +1265,7 @@
       height: 650px;
     }
     #wordButtonContainer {
-      max-height: 650px; 
-      height: 650px; 
+      height: 550px; 
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding: 20px;
       overflow-y: auto;
@@ -1388,7 +1375,7 @@
       flex: 1;
     }
     #keyContainer {
-      height: 800px; /* Set the maximum height to 650px */
+      height: 700px; /* Set the maximum height to 650px */
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding-top: 100px;
       padding-left: 20px;
@@ -1523,8 +1510,7 @@
               <button onclick="copyTextarea()" id="button1">Copy & Go</button>
               <button id="textareaButtonOne">&rightarrow;</button>
               <button onclick="clearTextarea()" id="clearTextareaButton">&circlearrowright;</button>
-              <textarea id="textarea1" placeholder="Enter text here. Use the right arrow button to move words from this section on the right. Clicking a word will replace it with a randomly generated string. Alternatively, Hover over words on this section, and they will appear in the input box above. You can add or change words in the input box, then click the replace button to replace them with randomly generated strings."></textarea>
-              <div id="toast" class="toast">Text has been copied!</div>
+              <textarea id="textarea1" placeholder="Enter text here. Click the right arrow button to shift words to a new section where they become buttons. Clicking a button will replace the word with a randomly generated string in the original section. Alternatively, Hover over words on this section, and they will appear in the input box above. You can add or change words in the input box, then click the replace button to replace them with randomly generated strings."></textarea>
             </div>
             <div class="center-half">
               <button onclick="convertToButtons()" id="button7" class="centerButton">&rightarrow;</button>

@@ -1083,6 +1083,7 @@
       margin-top: 20px;
       width: 15vw;
       margin-left: 15px;
+      padding: 5px;
     }
     .formLabel {
       font-weight: bold;
@@ -1886,6 +1887,15 @@
       window.location.reload();
     });
 
+    document.getElementById("addMoreBtnTwo").addEventListener("click", function() {
+      document.getElementById("formContainerTwo").style.display = "flex";
+    });
+
+    document.getElementById("clearNewBtnTwo").addEventListener("click", function() {
+      localStorage.removeItem("addedButtons");
+      window.location.reload();
+    });
+
     // Function to load the added buttons from Local Storage
     function loadButtonsFromLocalStorage() {
       var buttons = JSON.parse(localStorage.getItem("addedButtons")) || [];
@@ -1952,6 +1962,35 @@
 
       document.getElementById("newButtonForm").reset();
       document.getElementById("formContainer").style.display = "none";
+    });
+
+    document.getElementById("newButtonFormTwo").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var buttonLabel = document.getElementById("buttonLabelTwo").value;
+      var buttonValue = document.getElementById("buttonValueTwo").value;
+
+      var newButton = document.createElement("button");
+      newButton.classList.add("addButtonNew");
+      newButton.setAttribute("data-value", buttonValue);
+      newButton.textContent = buttonLabel;
+
+      newButton.addEventListener("click", function() {
+        var value = newButton.dataset.value;
+        var textarea1 = document.getElementById("textarea1");
+        textarea1.value = value + textarea1.value;
+        document.getElementById("leftButtonContainerTwo").classList.toggle('active');
+      });
+
+      var buttonContainer = document.getElementById("leftButtonContainerTwo");
+      // Insert the newButton after the buttonContainer
+      buttonContainer.parentNode.insertBefore(newButton, buttonContainer.nextSibling);
+
+      // Save the added button to Local Storage
+      saveButtonsToLocalStorage();
+
+      document.getElementById("newButtonFormTwo").reset();
+      document.getElementById("formContainerTwo").style.display = "none";
     });
 
     // Load the added buttons from Local Storage when the page is loaded

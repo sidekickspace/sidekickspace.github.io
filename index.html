@@ -175,9 +175,6 @@
     .textInput:focus {
       box-shadow: inset 3px 3px 5px #d9d9d9, inset -3px -3px 5px #ffffff;
     }
-    #formContainer {
-      display: none;
-    }
     .formLabel {
       font-weight: bold;
     }
@@ -608,7 +605,7 @@
       color: #666666;
       cursor: not-allowed;
     }
-    #formContainerNew {
+    #formContainerTwo {
       flex-direction: column;
       align-items: center;
       margin-top: 20px;
@@ -975,6 +972,7 @@
       box-shadow: inset -4px -4px 8px #ffffff, inset 4px 4px 8px #d1d9e6;
     }
     #addMoreBtn {
+      display: block;
       background: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
       color: white;
       font-size: 18px;
@@ -1006,6 +1004,7 @@
       cursor: not-allowed;
     }
     #clearNewBtn {
+      display: block;
       background: linear-gradient(to top, #b224ef 0%, #7579ff 100%);
       color: white;
       font-size: 18px;
@@ -1273,7 +1272,7 @@
       height: 650px;
     }
     #wordButtonContainer {
-      height: 600px; 
+      height: 610px; 
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding: 20px;
       overflow-y: auto;
@@ -1316,10 +1315,10 @@
       color: #333; /* Reset the text color */
     }
 
-    #addMoreBtnNew {
+    #addMoreBtnTwo {
       display: none;
     }
-    #clearNewBtnNew {
+    #clearNewBtnTwo {
       display: none;
     }
 
@@ -1390,7 +1389,7 @@
       flex: 1;
     }
     #keyContainer {
-      height: 650px; 
+      height: 670px; 
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding-top: 100px;
       padding-left: 20px;
@@ -1544,7 +1543,7 @@
       </div>
 
       <div class="hiddenContainer">
-        <div id="formContainerNew" style="display: none;">
+        <div id="formContainerTwo" style="display: none;">
           <form id="newButtonFormTwo">
             <label for="buttonLabelTwo" class="formLabel">Button Label:</label>
             <input type="text" id="buttonLabelTwo" class="textInput" required>

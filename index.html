@@ -180,7 +180,6 @@
     }
 
     .hiddenContainer {
-      display: block;
       display: flex;
       justify-content: left;
       align-items: center;
@@ -543,6 +542,16 @@
       opacity: 1;
     }
 
+    .addMoreButtonContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      margin-left: 0px;
+      margin-top: 0px;
+      margin-right: 20px;
+    }
     #addMoreBtnTwo {
       background: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
       color: white;
@@ -553,8 +562,7 @@
       box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
       cursor: pointer;
       transition: transform 0.2s ease-in-out;
-      width: 120px;
-      margin-left: 15px;
+      width: 150px;
       margin-top: 50px;
       text-transform: capitalize;
     }
@@ -584,8 +592,7 @@
       box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
       cursor: pointer;
       transition: transform 0.2s ease-in-out;
-      width: 120px;
-      margin-left: 15px;
+      width: 150px;
       margin-top: 50px;
       text-transform: capitalize;
     }
@@ -878,7 +885,6 @@
       margin-left: 50px;
     }
     .hiddenContainer {
-      display: block;
       display: flex;
       justify-content: left;
       align-items: center;
@@ -909,6 +915,7 @@
       height: 820px;
       margin-top: 60px;
       overflow-y: auto;
+      overflow-x: hidden;
     }
     .leftColumn h3 {
       font-size: 28px; 
@@ -1314,6 +1321,9 @@
       color: #333; /* Reset the text color */
     }
 
+    .addMoreButtonContainer {
+      display: none;
+    }
     #addMoreBtnTwo {
       display: none;
     }
@@ -1388,7 +1398,7 @@
       flex: 1;
     }
     #keyContainer {
-      height: 670px; 
+      height: 680px; 
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding-top: 100px;
       padding-left: 20px;
@@ -1536,7 +1546,7 @@
         </div>
       </div>
 
-      <div class="hiddenContainer">
+      <div class="addMoreButtonContainer">
         <button id="addMoreBtnTwo">Add More Buttons</button>
         <button id="clearNewBtnTwo">Remove Added Buttons</button>
       </div>

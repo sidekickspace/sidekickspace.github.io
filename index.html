@@ -629,6 +629,11 @@
         border-radius: 10px; 
         background: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
     }
+    .bottom-rowTwo {
+        width: 90vw;
+        border-radius: 0 0 10px 10px; 
+        height: 600px;
+    }
     .right-halftwo {
         flex: 1;
         position: relative;
@@ -1341,6 +1346,13 @@
         background: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
         margin: 50px;
     }
+    .bottom-rowTwo {
+        display: flex;
+        flex: 1;
+        width: 60vw;
+        border-radius: 0 0 10px 10px; 
+        height: 800px;
+    }
     .right-halftwo {
         flex: 1;
         display: flex;
@@ -1550,24 +1562,22 @@
         <button id="clearNewBtnTwo">Remove Added Buttons</button>
       </div>
 
-      <div class="hiddenContainer">
-        <div id="formContainerTwo" style="display: none;">
-          <form id="newButtonFormTwo">
-            <label for="buttonLabelTwo" class="formLabel">Button Label:</label>
-            <input type="text" id="buttonLabelTwo" class="textInput" required>
-            <label for="buttonValueTwo" class="formLabel">Value:</label>
-            <input type="text" id="buttonValueTwo" class="textInput" required>
-            <input type="submit" value="Add Button" class="submitInput">
-          </form>
-        </div>
-      <div>
+      <div id="formContainerTwo" style="display: none;">
+        <form id="newButtonFormTwo">
+          <label for="buttonLabelTwo" class="formLabel">Button Label:</label>
+          <input type="text" id="buttonLabelTwo" class="textInput" required>
+          <label for="buttonValueTwo" class="formLabel">Value:</label>
+          <input type="text" id="buttonValueTwo" class="textInput" required>
+          <input type="submit" value="Add Button" class="submitInput">
+        </form>
+      </div>
 
       <div class="hiddenContainer">
         <p class="headlineText">Restore Original Text</p>
       </div>
 
       <div id="containerTwo">
-        <div class="bottom-row">
+        <div class="bottom-rowTwo">
             <div class="left-halftwo">
               <div id="keyContainer">
                 <button id="keyContainerButton">&rightarrow;</button>

@@ -175,9 +175,6 @@
     .textInput:focus {
       box-shadow: inset 3px 3px 5px #d9d9d9, inset -3px -3px 5px #ffffff;
     }
-    .formLabel {
-      font-weight: bold;
-    }
 
     .hiddenContainer {
       display: flex;
@@ -200,7 +197,7 @@
       font-weight: 600;
     }
     #containerOne {
-        height: 600px;
+        height: 700px;
         box-shadow: 10px 10px 20px #c9c9c9,
                     -10px -10px 20px #ffffff; /* Adjust the colors and spread/radius as per your preference */
         width: 90vw;
@@ -275,14 +272,14 @@
     .bottom-row {
         width: 90vw;
         border-radius: 0 0 10px 10px; 
-        height: 500px;
+        height: 600px;
     }
     /* Define the left-half with textarea */
     .left-half {
         width: 90vw;
         position: relative;
         margin-bottom: 50px;
-        height: 500px;
+        height: 600px;
     }
     /* For webkit-based browsers (Chrome, Safari) */
     /* Customize the scrollbar track */
@@ -318,7 +315,7 @@
       color: transparent;
     }
     #textarea1 {
-      border-radius: 0 0 10px 10px;
+      border-radius: 0 0 0 0;
       padding-top: 80px;
       padding-left: 20px;
       padding-right: 20px;
@@ -462,7 +459,7 @@
         overflow-y: auto;
         display: none;
         position: relative;
-        height: 500px;
+        height: 600px;
     }
     #wordButtonContainer {
       height: 400px;
@@ -473,7 +470,7 @@
       padding-bottom: 20px;
       background: white;
       overflow-y: auto;
-      border-radius: 0 0 10px 10px;
+      border-radius: 0 0 0 0;
     }
     #wordButtonContainerButton {
       display: flex;
@@ -618,40 +615,16 @@
       width: 90vw;
       margin-left: 3vw;
     }
-    .submitInput {
-      border: none;
-      outline: none;
-      cursor: pointer;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 10px;
-      box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
-      transition: transform 0.2s ease-in-out;
-      margin-bottom: 15px;
-      margin-top: 15px;
-    }
-    .submitInput:hover {
-      transform: translate(2px, 2px);
-      box-shadow: 3px 3px 5px #d9d9d9, -3px -3px 5px #ffffff;
-    }
-    .textInput {
-      border: none;
-      outline: none;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 10px;
-      box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
-      width: 15vw;
-      margin-bottom: 15px;
-      margin-top: 15px;
-      transition: box-shadow 0.2s ease-in-out;
-    }
-    .textInput:focus {
-      box-shadow: inset 3px 3px 5px #d9d9d9, inset -3px -3px 5px #ffffff;
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px; /* Add spacing between form rows */
     }
     .formLabel {
       font-weight: bold;
+      margin-bottom: 5px; /* Add spacing between label and input */
     }
+
 
     #containerTwo {
         height: 600px;
@@ -1125,7 +1098,7 @@
 
     /* Set the container to occupy the whole viewport */
     #containerOne {
-        height: 800px;
+        height: 900px;
         display: flex;
         flex-direction: column;
         box-shadow: 10px 10px 20px #c9c9c9,
@@ -1214,7 +1187,7 @@
         flex: 1;
         display: flex;
         position: relative;
-        height: 650px;
+        height: 750px;
     }
     /* Define the textarea to occupy full height and width of left-half */
     textarea {
@@ -1238,7 +1211,7 @@
       color: transparent;
     }
     #textarea1 {
-      border-radius: 0 0 0 10px;
+      border-radius: 0 0 0 0;
       padding-top: 20px;
       padding-left: 20px;
       padding-right: 20px;
@@ -1262,7 +1235,7 @@
     }
     #button1 {
       position: absolute;
-      bottom: 20px;
+      bottom: 30px;
       right: 0px;
       margin-top: 20px;
       margin-right: 20px;
@@ -1314,14 +1287,14 @@
       flex: 1;
       display: flex;
       position: relative;
-      height: 650px;
+      height: 750px;
     }
     #wordButtonContainer {
       height: 610px; 
       width: 100%; /* Set the width to 100% to occupy the full width of the container */
       padding: 20px;
       overflow-y: auto;
-      border-radius: 0 0 10px 0;
+      border-radius: 0 0 0 0;
       background: white;
     }
     #wordButtonContainerButton {
@@ -1599,13 +1572,18 @@
 
       <div id="formContainerTwo" style="display: none;">
         <form id="newButtonFormTwo">
-          <label for="buttonLabelTwo" class="formLabel">Button Label:</label>
-          <input type="text" id="buttonLabelTwo" class="textInput" required>
-          <label for="buttonValueTwo" class="formLabel">Value:</label>
-          <input type="text" id="buttonValueTwo" class="textInput" required>
+          <div class="form-row">
+            <label for="buttonLabelTwo" class="formLabel">Button Label:</label>
+            <input type="text" id="buttonLabelTwo" class="textInput" required>
+          </div>
+          <div class="form-row">
+            <label for="buttonValueTwo" class="formLabel">Value:</label>
+            <input type="text" id="buttonValueTwo" class="textInput" required>
+          </div>
           <input type="submit" value="Add Button" class="submitInput">
         </form>
       </div>
+
 
       <div class="hiddenContainer">
         <p class="headlineText">Restore Original Text</p>
@@ -2000,32 +1978,32 @@
 
     document.getElementById("newButtonFormTwo").addEventListener("submit", function(event) {
       event.preventDefault();
-
+    
       var buttonLabel = document.getElementById("buttonLabelTwo").value;
       var buttonValue = document.getElementById("buttonValueTwo").value;
-
+    
       var newButton = document.createElement("button");
       newButton.classList.add("addButtonNew");
       newButton.setAttribute("data-value", buttonValue);
       newButton.textContent = buttonLabel;
-
+    
       newButton.addEventListener("click", function() {
         var value = newButton.dataset.value;
         var textarea1 = document.getElementById("textarea1");
         textarea1.value = value + textarea1.value;
         document.getElementById("leftButtonContainerTwo").classList.toggle('active');
       });
-
+    
       var buttonContainer = document.getElementById("leftButtonContainerTwo");
-      // Insert the newButton after the buttonContainer
-      buttonContainer.parentNode.insertBefore(newButton, buttonContainer.nextSibling);
-
+      buttonContainer.appendChild(newButton); // Use appendChild to add the new button
+    
       // Save the added button to Local Storage
       saveButtonsToLocalStorage();
-
+    
       document.getElementById("newButtonFormTwo").reset();
       document.getElementById("formContainerTwo").style.display = "none";
     });
+
 
     // Load the added buttons from Local Storage when the page is loaded
     loadButtonsFromLocalStorage();

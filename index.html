@@ -1340,6 +1340,16 @@
     #clearNewBtnTwo {
       display: none;
     }
+    .textInputTwo {
+      border: 1px solid #333;
+      outline: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      width: 80vw;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
 
     #containerTwo {
         height: 800px;
@@ -1572,11 +1582,11 @@
         <form id="newButtonFormTwo">
           <div class="form-row">
             <label for="buttonLabelTwo" class="formLabel">Button Label:</label>
-            <input type="text" id="buttonLabelTwo" class="textInput" required>
+            <input type="text" id="buttonLabelTwo" class="textInputTwo" required>
           </div>
           <div class="form-row">
             <label for="buttonValueTwo" class="formLabel">Value:</label>
-            <input type="text" id="buttonValueTwo" class="textInput" required>
+            <input type="text" id="buttonValueTwo" class="textInputTwo" required>
           </div>
           <input type="submit" value="Add Button" class="submitInput">
         </form>
@@ -1877,6 +1887,7 @@
         var keyValuePair = createKeyValuePair(key, value);
         keyValuePairsDiv.appendChild(keyValuePair);
       }
+      document.getElementById("textInput").value = ""; // Clear the input field
     });
 
     document.querySelectorAll(".addButton").forEach(button => {

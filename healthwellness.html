@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Sidekickspace - your AI sidekick</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+
+        body, html {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        article {
+            flex: 2;
+            margin-right: 2rem;
+        }
+
+        aside {
+            flex: 1;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .video-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .video-item {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .video-item iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-description {
+            text-align: left;
+            font-style: italic;
+            color: #888;
+            font-size: 14px;
+            margin-top: 20px; /* Add spacing between video and description */
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .video-item:hover .video-description {
+            color: #555;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #logo-font {
+            letter-spacing: 0.5px!important;
+            font-family: "Montserrat", sans-serif!important;
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px #bdbdbd;
+            font-size: 25px;
+            font-weight: 300;
+        }
+
+        .topContainer {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+        }
+
+        .navbar {
+            width: 90vw;
+            background: transparent;
+            color: black;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            /* Add styling for the mobile menu icon */
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: black;
+        }
+
+        .nav-list {
+            display: none;
+        }
+
+        .nav-list.active {
+            display: flex;
+            flex-direction: column;
+            background-color: white; /* Adjust the background color as needed */
+            position: absolute;
+            top: 60px; /* Adjust the top position as needed */
+            right: 5vw;
+            width: 60vw;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            flex-direction: column; /* Display nav-items vertically */
+            align-items: center; 
+        }
+
+        .nav-item {
+            display: inline-block;
+            padding: 10px 15px; /* Reduced padding */
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-weight: bold;
+            width: 40vw;
+            margin: 15px;
+            color: #333;
+        }
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+        }
+        .nav-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .has-submenu:hover {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            transition: box-shadow 0.3s ease;
+            width: calc(40vw + 10px);
+            left: 0;
+            top: 100%;
+        }
+
+        .submenu-item {
+            margin: 20px;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .topContainerContent {
+            width: 100%;
+            padding-top: 0px; /* Added padding for spacing */
+        }
+        .row {
+            display: flex;
+            flex-direction: column; /* Change the flex direction to column */
+            align-items: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #777;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .sticky-aside {
+            width:100%;
+        }
+
+        /*footer*/
+        footer {
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 20px;
+            text-align: center;
+            margin-top: 200px;
+        }
+        footer h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        footer p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .footerBody {
+            text-align: left;
+        }
+        .footerNotice {
+            text-align: left;
+            font-weight: bold;
+            margin-top: 50px;
+            color: #888888;
+        }
+        .footerNotice a {
+            color: #888888;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footerNotice a:hover {
+            color: #333333;
+        }
+        #termsContainer {
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        /* Media Queries */
+        /* extra Small screens (up to 576px) */
+        @media screen and (max-width: 576px) {
+            
+
+        }
+
+        /* small screens (up to 768px) */
+        @media screen and (min-width: 577px) and (max-width: 768px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* medium screens (up to 992px) */
+        @media screen and (min-width: 769px) and (max-width: 992px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* large screens (above 992px) */
+        @media screen and (min-width: 993px) and (max-width: 1199px) {
+            
+        }
+
+        /* Extra-large screens (above 1200px) */
+        @media (min-width: 1200px) {
+            .topContainer {
+                width: 100%;
+                height: auto; 
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                background: white;
+                background-repeat: no-repeat;
+                background-size: 50% 50%; /* Adjust the size of the image */
+                background-position: bottom center;
+            }
+
+            #logo-font {
+                letter-spacing: 0.5px!important;
+                font-family: "Montserrat", sans-serif!important;
+                text-transform: uppercase;
+                text-shadow: 0 1px 2px #bdbdbd;
+                font-size: 25px;
+                font-weight: 300;
+            }
+
+            .navbar {
+                width: 50vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between; /* Distribute items to both ends */
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: none; /* Hide on desktop */
+                cursor: pointer;
+            }
+
+            .nav-list {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-item {
+                display: inline-block;
+                margin-right: 30px;
+                padding: 12px 24px;
+                font-size: 16px;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                width: 100px;
+                font-weight: bold;
+                text-align: center;
+                color: #333;
+            }
+            .nav-item a {
+                text-decoration: none;
+                color: #333;
+            }
+            .nav-item:hover {
+                transform: translateY(-3px);
+            }
+
+            .has-submenu:hover .submenu {
+                display: block;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .has-submenu:hover{
+                border-radius: 10px 10px 0 0;
+            }
+
+            .submenu {
+                display: none;
+                position: absolute;
+                background: #f0f0f0;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                padding: 10px;
+                transition: box-shadow 0.3s ease;
+                width: 125px;
+                left: 0; /* Align the submenu with the left side of .nav-item */
+                top: 100%;
+            }
+
+            .submenu-item {
+                margin: 20px;
+                text-align: center;
+                padding-left: 0px;
+            }
+
+            /*topContainer content*/
+            .topContainerContent {
+                width:  50vw;
+                padding-top: 20px;
+            }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                flex-direction: row;
+                margin: 0px;
+            }
+
+            h1 {
+                color: #333;
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                color: #333;
+                font-size: 26px;
+                margin-bottom: 10px;
+            }
+            p {
+                color: #777;
+                font-size: 18px;
+                line-height: 1.5;
+            }
+
+            .sticky-aside {
+                position: sticky;
+                top: 150px; /* Adjust this value as needed */
+                align-self: flex-start;
+            }
+
+            footer {
+                background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+                padding: 20px;
+                text-align: center;
+                margin-top: 230px;
+            }
+
+            footer h3 {
+                color: #333;
+                font-size: 22px;
+                margin-bottom: 10px;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .footerNotice {
+                text-align: center;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+            .footerNotice a {
+                color: #888888;
+                text-decoration: none;
+                margin: 0 5px;
+            }
+
+            .footerNotice a:hover {
+                color: #333333;
+            }
+
+            footer p {
+                color: #666;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <section class="topContainer">
+        <nav class="navbar">
+            <div class="logo"><h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <a href="/about"><li class="nav-item" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);">Home</li></a>
+                <li class="nav-item" style="background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);"><a href="#">Prompt Tool</a></li>
+                <li class="nav-item has-submenu" style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">
+                <a href="#">Blog</a>
+                <div class="submenu">
+                    <div class="submenu-item"><a href="#">Jobs</a></div>
+                    <div class="submenu-item"><a href="#">Lifestyle</a></div>
+                </div>
+                </li>
+                <li class="nav-item" style="background: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);"><a href="#">Tutorial</a></li>
+            </ul>
+        </nav>
+        <div class="topContainerContent">
+            <div class="row">
+                <article>
+
+                    <p>The integration of generative AI in the healthcare sector has immense potential to transform the way we approach diagnostics and treatment. By analyzing extensive medical datasets, generative AI models can identify subtle patterns and correlations that might escape human observation. This capability opens doors to early disease detection, more accurate diagnoses, and personalized treatment plans.</p>
+                    <p>Imagine a scenario where a generative AI model processes a patient's medical history, genetic information, and lifestyle data to predict their susceptibility to certain illnesses. This predictive analysis could prompt proactive measures to mitigate risks and maintain overall well-being.</p>
+
+                    <h2>Drug Discovery and Development:</h2>
+                    <p>The process of discovering and developing new drugs is notoriously time-consuming and expensive. Generative AI can accelerate this process by simulating molecular structures and predicting their potential interactions with various biological entities. This technology holds the promise of rapidly identifying drug candidates, ultimately speeding up the journey from the lab to the patient.</p>
+
+                    <h2>Enhanced Mental Health Support:</h2>
+                    <p>Mental health is an area where generative AI can make a profound impact. Chatbots and virtual assistants powered by generative AI can offer a safe space for individuals to express their feelings and concerns. These AI companions can provide empathetic responses, offer coping strategies, and even connect users with mental health professionals when necessary. For many, the accessibility and privacy offered by such AI-powered tools can bridge the gap between seeking help and struggling in silence.</p>
+
+                    <h2>Promoting Wellness through Personalized Content:</h2>
+                    <p>Generative AI can also contribute to personal wellness by tailoring content to individuals' preferences and goals. Fitness applications can create customized workout plans and meal suggestions based on users' physical condition, preferences, and objectives. This personalization enhances motivation and adherence, leading to more successful health journeys.</p>
+
+                    <h2>Ethical Considerations:</h2>
+                    <p>While the potential benefits of generative AI in health and wellness are undeniable, ethical considerations must not be overlooked. Privacy concerns, data security, and potential biases within training data are critical issues that need careful attention. Ensuring that AI technologies are developed and deployed responsibly is paramount to their success and acceptance within the healthcare ecosystem.</p>
+
+                    <h2>The Road Ahead:</h2>
+                    <p>Generative AI is poised to reshape the landscape of health and wellness by offering personalized insights, accelerating medical breakthroughs, and providing accessible mental health support. As we embrace these advancements, it's crucial to strike a balance between innovation and ethics, ensuring that the technology serves humanity's best interests.</p>
+
+                    <p>In conclusion, the integration of generative AI in health and wellness holds the potential to usher in a new era of personalized care, treatment, and support. From revolutionizing drug discovery to enhancing mental health services, the applications of this technology are vast and impactful. As researchers, practitioners, and enthusiasts, it's our responsibility to navigate these possibilities thoughtfully and pave the way for a healthier and more empowered future.</p>
+
+                </article>
+        
+                <aside class="sticky-aside">
+                    <h2 style="margin-left: 20px;">Recommended Videos</h2>
+                    <ul class="video-list">
+                        <li class="video-item">
+                            <iframe src="https://www.youtube.com/embed/j6vLC8ADcaw?si=gwwTMzJH_dedhgtJ" width="100%" height="100%" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </li>
+                        <li>
+                            <div class="video-description">
+                                The video discusses the use of ChatGPT to create a strength and muscle building program. The AI provides information about the mechanisms of muscle growth and strength gain, as well as designing a workout program based on scientific principles.</div>
+                        </li>
+                        <li class="video-item">
+                            <iframe src="https://www.youtube.com/embed/YFHGn3GEJ8Q?si=qoAqSUx1JTnBgpGu" width="100%" height="100%" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </li>
+                        <li>
+                            <div class="video-description">The video discusses the process of using ChatGPT to address mental health challenges and provide therapeutic guidance. The narrator starts by explaining the potential benefits of using AI as a therapeutic tool, particularly for those who may not have easy access to traditional therapy. </div>
+                        </li>
+                        <!-- Add more video items as needed -->
+                    </ul>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="termsContainer">
+            <p class="footerNotice">&copy; 2023 sidekickspace.com. All rights reserved. <a href="disclaimer.html">Disclaimer</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+    <script>
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Sidekickspace - your AI sidekick</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+
+        body, html {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        article {
+            flex: 2;
+            margin-right: 2rem;
+        }
+
+        #logo-font {
+            letter-spacing: 0.5px!important;
+            font-family: "Montserrat", sans-serif!important;
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px #bdbdbd;
+            font-size: 25px;
+            font-weight: 300;
+        }
+
+        .topContainer {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+        }
+
+        .navbar {
+            width: 90vw;
+            background: transparent;
+            color: black;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            /* Add styling for the mobile menu icon */
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: black;
+        }
+
+        .nav-list {
+            display: none;
+        }
+
+        .nav-list.active {
+            display: flex;
+            flex-direction: column;
+            background-color: white; /* Adjust the background color as needed */
+            position: absolute;
+            top: 60px; /* Adjust the top position as needed */
+            right: 5vw;
+            width: 60vw;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            flex-direction: column; /* Display nav-items vertically */
+            align-items: center; 
+        }
+
+        .nav-item {
+            display: inline-block;
+            padding: 10px 15px; /* Reduced padding */
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-weight: bold;
+            width: 40vw;
+            margin: 15px;
+            color: #333;
+        }
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+        }
+        .nav-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .has-submenu:hover {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            transition: box-shadow 0.3s ease;
+            width: calc(40vw + 10px);
+            left: 0;
+            top: 100%;
+        }
+
+        .submenu-item {
+            margin: 20px;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .topContainerContent {
+            width: 100%;
+            padding-top: 0px; /* Added padding for spacing */
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column; /* Change the flex direction to column */
+            align-items: center;
+            margin: 20px;
+        }
+
+        .instruction {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0px;
+        }
+
+        .step {
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .step-description {
+            margin-top: 0px;
+        }
+
+        .step-description p {
+            margin: 0px;
+            line-height: 1.4;
+        }
+
+        .step-number {
+            font-weight: bold;
+            color: #007bff; 
+        }
+
+        .step-image {
+            max-width: 100%;
+            height: auto;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .step-image img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #777;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /*footer*/
+        footer {
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 20px;
+            text-align: center;
+            margin-top: 200px;
+        }
+        footer h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        footer p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .footerBody {
+            text-align: left;
+        }
+        .footerNotice {
+            text-align: left;
+            font-weight: bold;
+            margin-top: 50px;
+            color: #888888;
+        }
+        .footerNotice a {
+            color: #888888;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footerNotice a:hover {
+            color: #333333;
+        }
+        #termsContainer {
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        /* Media Queries */
+        /* extra Small screens (up to 576px) */
+        @media screen and (max-width: 576px) {
+            
+
+        }
+
+        /* small screens (up to 768px) */
+        @media screen and (min-width: 577px) and (max-width: 768px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* medium screens (up to 992px) */
+        @media screen and (min-width: 769px) and (max-width: 992px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* large screens (above 992px) */
+        @media screen and (min-width: 993px) and (max-width: 1199px) {
+            
+        }
+
+        /* Extra-large screens (above 1200px) */
+        @media (min-width: 1200px) {
+            .topContainer {
+                width: 100%;
+                height: auto; 
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                background: white;
+                background-repeat: no-repeat;
+                background-size: 50% 50%; /* Adjust the size of the image */
+                background-position: bottom center;
+            }
+
+            #logo-font {
+                letter-spacing: 0.5px!important;
+                font-family: "Montserrat", sans-serif!important;
+                text-transform: uppercase;
+                text-shadow: 0 1px 2px #bdbdbd;
+                font-size: 25px;
+                font-weight: 300;
+            }
+
+            .navbar {
+                width: 50vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between; /* Distribute items to both ends */
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: none; /* Hide on desktop */
+                cursor: pointer;
+            }
+
+            .nav-list {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-item {
+                display: inline-block;
+                margin-right: 30px;
+                padding: 12px 24px;
+                font-size: 16px;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                width: 100px;
+                font-weight: bold;
+                text-align: center;
+                color: #333;
+            }
+            .nav-item a {
+                text-decoration: none;
+                color: #333;
+            }
+            .nav-item:hover {
+                transform: translateY(-3px);
+            }
+
+            .has-submenu:hover .submenu {
+                display: block;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .has-submenu:hover{
+                border-radius: 10px 10px 0 0;
+            }
+
+            .submenu {
+                display: none;
+                position: absolute;
+                background: #f0f0f0;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                padding: 10px;
+                transition: box-shadow 0.3s ease;
+                width: 125px;
+                left: 0; /* Align the submenu with the left side of .nav-item */
+                top: 100%;
+            }
+
+            .submenu-item {
+                margin: 20px;
+                text-align: center;
+                padding-left: 0px;
+            }
+
+            /*topContainer content*/
+            .topContainerContent {
+                width:  50vw;
+                padding-top: 20px;
+            }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                flex-direction: row;
+                margin: 0px;
+            }
+            .step {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+            }
+
+            .step-description {
+                flex: 1;
+                padding-right: 20px;
+            }
+
+            .step-description p {
+                margin: 10px 0;
+                line-height: 1.4;
+            }
+
+            .step-number {
+                font-weight: bold;
+                color: #007bff; /* Or your preferred color */
+            }
+
+            .step-image {
+                flex: 1;
+            }
+
+            .step-image img {
+                max-width: 100%;
+                height: auto;
+                border: 1px solid #ddd;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            }
+
+            h1 {
+                color: #333;
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                color: #333;
+                font-size: 26px;
+                margin-bottom: 10px;
+            }
+            p {
+                color: #777;
+                font-size: 18px;
+                line-height: 1.5;
+            }
+
+            footer {
+                background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+                padding: 20px;
+                text-align: center;
+                margin-top: 230px;
+            }
+
+            footer h3 {
+                color: #333;
+                font-size: 22px;
+                margin-bottom: 10px;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .footerNotice {
+                text-align: center;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+            .footerNotice a {
+                color: #888888;
+                text-decoration: none;
+                margin: 0 5px;
+            }
+
+            .footerNotice a:hover {
+                color: #333333;
+            }
+
+            footer p {
+                color: #666;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <section class="topContainer">
+        <nav class="navbar">
+            <div class="logo"><h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <a href="/about"><li class="nav-item" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);">Home</li></a>
+                <li class="nav-item" style="background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);"><a href="#">Prompt Tool</a></li>
+                <li class="nav-item has-submenu" style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">
+                <a href="#">Blog</a>
+                <div class="submenu">
+                    <div class="submenu-item"><a href="/about#jobSection ">Jobs</a></div>
+                    <div class="submenu-item"><a href="#">Lifestyle</a></div>
+                </div>
+                </li>
+                <li class="nav-item" style="background: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);"><a href="#">Tutorial</a></li>
+            </ul>
+        </nav>
+        <div class="topContainerContent">
+            <div class="row">
+                <article>
+
+                    <p>Welcome to our innovative text privacy tool – a solution designed to safeguard your sensitive information while harnessing the power of generative AI. With privacy concerns growing in the digital age, we've developed a unique way to protect your data without compromising on the capabilities of cutting-edge AI technologies.</p>
+
+                    <p>Our tool operates on a simple yet effective principle. We understand that sharing sensitive information with generative AI can be worrisome. That's why we've created a seamless process that allows you to interact with AI while keeping your data confidential.</p>
+
+                    <p>How does it work? Our tool replaces sensitive words and phrases with random strings, making sure that the original information remains hidden. You can then paste this modified text into the generative AI input box, confident that your private details are shielded from direct exposure.</p>
+
+                    <p>Once you receive the AI-generated output, our tool lets you effortlessly revert the text to its original form. No more compromising between utilizing advanced AI capabilities and protecting your privacy – now you can have both.</p>
+
+                    <p>Experience the freedom to explore generative AI without the fear of sharing confidential data. Give our text privacy tool a try and take control of your information like never before.</p>
+
+                    <h2>An Example Use Case</h2>
+                    <p>Let's explore a typical scenario: Imagine you're crafting a job application cover letter. To leverage AI's help without revealing personal details, you input your cover letter into our tool. It's then transformed into a secure version with random strings. After AI processing, you easily restore the original content, gaining valuable insights while maintaining privacy.</p>
+
+                </article>
+            </div>
+            <div class="row">
+                <div class="instruction">
+                    <div class="step">
+                        <div class="step-description">
+                            <p><span class="step-number">Step 1:</span> Input or Paste Your Text</p>
+                            <p>Start by typing or pasting the text that you want to send to the generative AI into the input box.</p>
+                            <p>After inputting your text, click the right arrow button circled in the screenshot image to proceed.</p>
+                        </div>
+                        <div class="step-image">
+                            <img src="img/step1.png" alt="Step 1 Screenshot">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-description">
+                            <div class="step-description">
+                                <p><span class="step-number">Step 2:</span> Protect with Randomization</p>
+                                <p>Now that you've entered your text, it's time to protect it using random strings. Click the word buttons shown in the screenshot image. Each button click will replace specific words in the text with random strings.</p>
+                                <p>Your text will be transformed into a secure version with random strings replacing sensitive information.</p>
+                            </div>
+                        </div>
+                        <div class="step-image">
+                            <img src="img/step2.png" alt="Step 2 Screenshot">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-description">
+                            <p><span class="step-number">Step 3:</span> An Alternate Approach to Text Replacement</p>
+                            <p>There's an alternative method for replacing text. Highlight the text you want to protect in the input box. Click the 'Replace' button to replace the selected words with random strings.</p>
+                            <p>Once all sensitive information is replaced, click the 'Copy and Go' button (circled in the screenshot image) to proceed to the next step.</p>
+                        </div>
+                        <div class="step-image">
+                            <img src="img/step3.png" alt="Step 3 Screenshot">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-description">
+                            <p><span class="step-number">Step 4:</span> Generate AI Output</p>
+                            <p>Your modified text is now ready to be used with the generative AI. Paste the transformed text into the AI's input box.</p>
+                            <p>Once the AI generates the output, copy the result to continue.</p>
+                        </div>
+                        <div class="step-image">
+                            <img src="img/step4.png" alt="Step 4 Screenshot">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-description">
+                            <p><span class="step-number">Step 5:</span> Restore Original Text</p>
+                            <p>Now that you have the AI-generated output, navigate back to the original webpage where you initially used the tool.</p>
+                            <p>Paste the AI-generated text into the designated input box. Then, click the 'Restore & Copy' button (circled in the screenshot image) to replace the random strings with the original words.</p>
+                            <p>Your text is now restored to its original form, with sensitive information back in place.</p>
+                        </div>
+                        <div class="step-image">
+                            <img src="img/step5.png" alt="Step 5 Screenshot">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-description">
+                            <p><span class="step-number">Step 6:</span> Complete the Process</p>
+                            <p>Your restored text is now ready to be copied and used. All original words have been reinstated.</p>
+                            <p>If you'd like to start over with different text, you have options. You can click the 'Start Over' button to reset the tool, or simply refresh the webpage to initiate the process anew.</p>
+                            <p>Feel free to explore and utilize the tool to protect your sensitive information whenever you need.</p>
+                        </div>
+                        <div class="step-image">
+                            <img src="img/step6.png" alt="Step 6 Screenshot">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="termsContainer">
+            <p class="footerNotice">&copy; 2023 sidekickspace.com. All rights reserved. <a href="disclaimer.html">Disclaimer</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+    <script>
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+    </script>
+</body>
+</html>

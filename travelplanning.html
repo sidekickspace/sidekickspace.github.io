@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Sidekickspace - your AI sidekick</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+
+        body, html {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        article {
+            flex: 2;
+            margin-right: 2rem;
+        }
+
+        aside {
+            flex: 1;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .video-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .video-item {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .video-item iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-description {
+            text-align: left;
+            font-style: italic;
+            color: #888;
+            font-size: 14px;
+            margin-top: 20px; /* Add spacing between video and description */
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .video-item:hover .video-description {
+            color: #555;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #logo-font {
+            letter-spacing: 0.5px!important;
+            font-family: "Montserrat", sans-serif!important;
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px #bdbdbd;
+            font-size: 25px;
+            font-weight: 300;
+        }
+
+        .topContainer {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+        }
+
+        .navbar {
+            width: 90vw;
+            background: transparent;
+            color: black;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            /* Add styling for the mobile menu icon */
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: black;
+        }
+
+        .nav-list {
+            display: none;
+        }
+
+        .nav-list.active {
+            display: flex;
+            flex-direction: column;
+            background-color: white; /* Adjust the background color as needed */
+            position: absolute;
+            top: 60px; /* Adjust the top position as needed */
+            right: 5vw;
+            width: 60vw;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            flex-direction: column; /* Display nav-items vertically */
+            align-items: center; 
+        }
+
+        .nav-item {
+            display: inline-block;
+            padding: 10px 15px; /* Reduced padding */
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-weight: bold;
+            width: 40vw;
+            margin: 15px;
+            color: #333;
+        }
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+        }
+        .nav-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .has-submenu:hover {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            transition: box-shadow 0.3s ease;
+            width: calc(40vw + 10px);
+            left: 0;
+            top: 100%;
+        }
+
+        .submenu-item {
+            margin: 20px;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .topContainerContent {
+            width: 100%;
+            padding-top: 0px; /* Added padding for spacing */
+        }
+        .row {
+            display: flex;
+            flex-direction: column; /* Change the flex direction to column */
+            align-items: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #777;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .sticky-aside {
+            width:100%;
+        }
+
+        /*footer*/
+        footer {
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 20px;
+            text-align: center;
+            margin-top: 200px;
+        }
+        footer h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        footer p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .footerBody {
+            text-align: left;
+        }
+        .footerNotice {
+            text-align: left;
+            font-weight: bold;
+            margin-top: 50px;
+            color: #888888;
+        }
+        .footerNotice a {
+            color: #888888;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footerNotice a:hover {
+            color: #333333;
+        }
+        #termsContainer {
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        /* Media Queries */
+        /* extra Small screens (up to 576px) */
+        @media screen and (max-width: 576px) {
+            
+
+        }
+
+        /* small screens (up to 768px) */
+        @media screen and (min-width: 577px) and (max-width: 768px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* medium screens (up to 992px) */
+        @media screen and (min-width: 769px) and (max-width: 992px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* large screens (above 992px) */
+        @media screen and (min-width: 993px) and (max-width: 1199px) {
+            
+        }
+
+        /* Extra-large screens (above 1200px) */
+        @media (min-width: 1200px) {
+            .topContainer {
+                width: 100%;
+                height: auto; 
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                background: white;
+                background-repeat: no-repeat;
+                background-size: 50% 50%; /* Adjust the size of the image */
+                background-position: bottom center;
+            }
+
+            #logo-font {
+                letter-spacing: 0.5px!important;
+                font-family: "Montserrat", sans-serif!important;
+                text-transform: uppercase;
+                text-shadow: 0 1px 2px #bdbdbd;
+                font-size: 25px;
+                font-weight: 300;
+            }
+
+            .navbar {
+                width: 50vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between; /* Distribute items to both ends */
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: none; /* Hide on desktop */
+                cursor: pointer;
+            }
+
+            .nav-list {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-item {
+                display: inline-block;
+                margin-right: 30px;
+                padding: 12px 24px;
+                font-size: 16px;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                width: 100px;
+                font-weight: bold;
+                text-align: center;
+                color: #333;
+            }
+            .nav-item a {
+                text-decoration: none;
+                color: #333;
+            }
+            .nav-item:hover {
+                transform: translateY(-3px);
+            }
+
+            .has-submenu:hover .submenu {
+                display: block;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .has-submenu:hover{
+                border-radius: 10px 10px 0 0;
+            }
+
+            .submenu {
+                display: none;
+                position: absolute;
+                background: #f0f0f0;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                padding: 10px;
+                transition: box-shadow 0.3s ease;
+                width: 125px;
+                left: 0; /* Align the submenu with the left side of .nav-item */
+                top: 100%;
+            }
+
+            .submenu-item {
+                margin: 20px;
+                text-align: center;
+                padding-left: 0px;
+            }
+
+            /*topContainer content*/
+            .topContainerContent {
+                width:  50vw;
+                padding-top: 20px;
+            }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                flex-direction: row;
+                margin: 0px;
+            }
+
+            h1 {
+                color: #333;
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                color: #333;
+                font-size: 26px;
+                margin-bottom: 10px;
+            }
+            p {
+                color: #777;
+                font-size: 18px;
+                line-height: 1.5;
+            }
+
+            .sticky-aside {
+                position: sticky;
+                top: 150px; /* Adjust this value as needed */
+                align-self: flex-start;
+            }
+
+            footer {
+                background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+                padding: 20px;
+                text-align: center;
+                margin-top: 230px;
+            }
+
+            footer h3 {
+                color: #333;
+                font-size: 22px;
+                margin-bottom: 10px;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .footerNotice {
+                text-align: center;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+            .footerNotice a {
+                color: #888888;
+                text-decoration: none;
+                margin: 0 5px;
+            }
+
+            .footerNotice a:hover {
+                color: #333333;
+            }
+
+            footer p {
+                color: #666;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <section class="topContainer">
+        <nav class="navbar">
+            <div class="logo"><h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <a href="/about"><li class="nav-item" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);">Home</li></a>
+                <li class="nav-item" style="background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);"><a href="#">Prompt Tool</a></li>
+                <li class="nav-item has-submenu" style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">
+                <a href="#">Blog</a>
+                <div class="submenu">
+                    <div class="submenu-item"><a href="#">Jobs</a></div>
+                    <div class="submenu-item"><a href="#">Lifestyle</a></div>
+                </div>
+                </li>
+                <li class="nav-item" style="background: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);"><a href="#">Tutorial</a></li>
+            </ul>
+        </nav>
+        <div class="topContainerContent">
+            <div class="row">
+                <article>
+
+                    <p>One of the most exciting applications of generative AI in travel is the creation of personalized itineraries.
+                        By analyzing a traveler's preferences, interests, and constraints, AI algorithms can generate comprehensive
+                        day-to-day plans. These itineraries consider factors like historical sites, local cuisines, weather conditions,
+                        and even crowd tendencies. The result? Tailored travel experiences that align with each individual's desires.</p>
+                
+                    <h2>Enhanced Destination Recommendations:</h2>
+                
+                    <p>Generative AI can elevate the way travel destinations are recommended. Instead of relying on generic
+                        suggestions, AI considers a traveler's past choices and suggests unexplored locations that match their
+                        preferences. By factoring in real-time data, such as current events and social media trends, AI ensures that
+                        recommendations are timely and relevant, enabling travelers to stay ahead of the curve.</p>
+                
+                    <h2>Immersive Pre-Travel Preparations:</h2>
+                
+                    <p>Traveling becomes more meaningful when you are well-informed about your destination. Generative AI can assist in
+                        this aspect by providing immersive pre-travel materials. It can craft engaging content, including virtual
+                        tours, historical insights, and cultural anecdotes, enhancing the excitement and anticipation leading up to the
+                        journey.</p>
+                
+                    <h2>Conversational Travel Assistants:</h2>
+                
+                    <p>Picture having a conversation with an AI-powered travel assistant. Generative AI can enable natural language
+                        interactions, allowing travelers to discuss their preferences and receive real-time suggestions and solutions.
+                        These AI companions can address queries, offer advice, and even adjust itineraries on the go, making the travel
+                        experience seamless and adaptable.</p>
+                
+                    <h2>Overcoming Challenges:</h2>
+                
+                    <p>While the potential of generative AI in travel planning is vast, it's important to acknowledge certain
+                        challenges. Data privacy, for instance, requires careful handling as personal information is used to tailor
+                        recommendations. Striking a balance between personalization and privacy will be crucial to building trust among
+                        travelers.</p>
+                
+                    <h2>The Human Touch:</h2>
+                
+                    <p>Generative AI might revolutionize travel planning, but the human touch remains invaluable. While AI can process
+                        data and generate content, it lacks the emotional intelligence and cultural nuances that human experts bring. A
+                        fusion of AI-driven efficiency and human expertise is likely to yield the best results, ensuring that travel
+                        experiences are both well-informed and deeply enriching.</p>
+                
+                    <h2>Ethical Considerations:</h2>
+                
+                    <p>As with any technology, ethical considerations come to the forefront. Striking the right balance between
+                        automation and genuine human experiences is crucial. Additionally, there is a need to address potential biases
+                        in AI recommendations, ensuring that they do not inadvertently perpetuate stereotypes or exclude certain
+                        groups.</p>
+                
+                    <h2>The Road Ahead:</h2>
+                
+                    <p>Generative AI is poised to transform travel planning from a logistical chore into an exciting and creative
+                        endeavor. The fusion of data-driven insights and human expertise holds the potential to craft journeys that are
+                        as unique as the travelers themselves. However, as we tread this path, it's essential to tread carefully,
+                        addressing privacy concerns and ethical dilemmas to ensure that the future of travel remains inclusive and
+                        exceptional.</p>
+                
+                    <p>In conclusion, the marriage of generative AI and travel planning marks a significant leap forward in how we
+                        explore the world. As technology continues to advance, we have the opportunity to harness its capabilities for a
+                        more personalized, efficient, and enjoyable travel experience. By embracing the potential of generative AI while
+                        upholding the values of human connection and cultural understanding, we can look forward to a future where
+                        every journey is a masterpiece of exploration and discovery.</p>
+
+                </article>
+        
+                <aside class="sticky-aside">
+                    <h2 style="margin-left: 20px;">Recommended Videos</h2>
+                    <ul class="video-list">
+                        <li class="video-item">
+                            <iframe src="https://www.youtube.com/embed/CASq7ggB96c?si=8mIs7MZXt2ohuRp2" width="100%" height="100%" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </li>
+                        <li>
+                            <div class="video-description">
+                                The video showcases ChatGPT, an AI tool for travel planning. It offers personalized itineraries, packing lists, restaurant suggestions, visa info, and travel ideas. Though not always perfect, it's a valuable resource.</div>
+                        </li>
+                        <li class="video-item">
+                            <iframe src="https://www.youtube.com/embed/qYHNWvCo9_E?si=qI5EY4n9_RRZMtJb" width="100%" height="100%" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </li>
+                        <li>
+                            <div class="video-description">The video provides a step-by-step guide to creating a travel plan using ChatGPT and Notion. The creator personally plans a family trip to the Netherlands, demonstrating how ChatGPT assists in generating suggestions for activities, restaurants, and other details for each day of the trip.</div>
+                        </li>
+                        <!-- Add more video items as needed -->
+                    </ul>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="termsContainer">
+            <p class="footerNotice">&copy; 2023 sidekickspace.com. All rights reserved. <a href="disclaimer.html">Disclaimer</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+    <script>
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+    </script>
+</body>
+</html>

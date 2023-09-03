@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Sidekickspace - your AI sidekick</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+
+        body, html {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        article {
+            flex: 2;
+            margin-right: 2rem;
+        }
+
+        aside {
+            flex: 1;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .video-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .video-item {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .video-item iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-description {
+            text-align: left;
+            font-style: italic;
+            color: #888;
+            font-size: 14px;
+            margin-top: 20px; /* Add spacing between video and description */
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .video-item:hover .video-description {
+            color: #555;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #logo-font {
+            letter-spacing: 0.5px!important;
+            font-family: "Montserrat", sans-serif!important;
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px #bdbdbd;
+            font-size: 25px;
+            font-weight: 300;
+        }
+
+        .topContainer {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+        }
+
+        .navbar {
+            width: 90vw;
+            background: transparent;
+            color: black;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            /* Add styling for the mobile menu icon */
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: black;
+        }
+
+        .nav-list {
+            display: none;
+        }
+
+        .nav-list.active {
+            display: flex;
+            flex-direction: column;
+            background-color: white; /* Adjust the background color as needed */
+            position: absolute;
+            top: 60px; /* Adjust the top position as needed */
+            right: 5vw;
+            width: 60vw;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            flex-direction: column; /* Display nav-items vertically */
+            align-items: center; 
+        }
+
+        .nav-item {
+            display: inline-block;
+            padding: 10px 15px; /* Reduced padding */
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-weight: bold;
+            width: 40vw;
+            margin: 15px;
+            color: #333;
+        }
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+        }
+        .nav-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .has-submenu:hover {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            transition: box-shadow 0.3s ease;
+            width: calc(40vw + 10px);
+            left: 0;
+            top: 100%;
+        }
+
+        .submenu-item {
+            margin: 20px;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .topContainerContent {
+            width: 100%;
+            padding-top: 0px; /* Added padding for spacing */
+        }
+        .row {
+            display: flex;
+            flex-direction: column; /* Change the flex direction to column */
+            align-items: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #777;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .sticky-aside {
+            width:100%;
+        }
+
+        /*footer*/
+        footer {
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 20px;
+            text-align: center;
+            margin-top: 200px;
+        }
+        footer h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        footer p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .footerBody {
+            text-align: left;
+        }
+        .footerNotice {
+            text-align: left;
+            font-weight: bold;
+            margin-top: 50px;
+            color: #888888;
+        }
+        .footerNotice a {
+            color: #888888;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footerNotice a:hover {
+            color: #333333;
+        }
+        #termsContainer {
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        /* Media Queries */
+        /* extra Small screens (up to 576px) */
+        @media screen and (max-width: 576px) {
+            
+
+        }
+
+        /* small screens (up to 768px) */
+        @media screen and (min-width: 577px) and (max-width: 768px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* medium screens (up to 992px) */
+        @media screen and (min-width: 769px) and (max-width: 992px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* large screens (above 992px) */
+        @media screen and (min-width: 993px) and (max-width: 1199px) {
+            
+        }
+
+        /* Extra-large screens (above 1200px) */
+        @media (min-width: 1200px) {
+            .topContainer {
+                width: 100%;
+                height: auto; 
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                background: white;
+                background-repeat: no-repeat;
+                background-size: 50% 50%; /* Adjust the size of the image */
+                background-position: bottom center;
+            }
+
+            #logo-font {
+                letter-spacing: 0.5px!important;
+                font-family: "Montserrat", sans-serif!important;
+                text-transform: uppercase;
+                text-shadow: 0 1px 2px #bdbdbd;
+                font-size: 25px;
+                font-weight: 300;
+            }
+
+            .navbar {
+                width: 50vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between; /* Distribute items to both ends */
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: none; /* Hide on desktop */
+                cursor: pointer;
+            }
+
+            .nav-list {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-item {
+                display: inline-block;
+                margin-right: 30px;
+                padding: 12px 24px;
+                font-size: 16px;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                width: 100px;
+                font-weight: bold;
+                text-align: center;
+                color: #333;
+            }
+            .nav-item a {
+                text-decoration: none;
+                color: #333;
+            }
+            .nav-item:hover {
+                transform: translateY(-3px);
+            }
+
+            .has-submenu:hover .submenu {
+                display: block;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .has-submenu:hover{
+                border-radius: 10px 10px 0 0;
+            }
+
+            .submenu {
+                display: none;
+                position: absolute;
+                background: #f0f0f0;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                padding: 10px;
+                transition: box-shadow 0.3s ease;
+                width: 125px;
+                left: 0; /* Align the submenu with the left side of .nav-item */
+                top: 100%;
+            }
+
+            .submenu-item {
+                margin: 20px;
+                text-align: center;
+                padding-left: 0px;
+            }
+
+            /*topContainer content*/
+            .topContainerContent {
+                width:  50vw;
+                padding-top: 20px;
+            }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                flex-direction: row;
+                margin: 0px;
+            }
+
+            h1 {
+                color: #333;
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                color: #333;
+                font-size: 26px;
+                margin-bottom: 10px;
+            }
+            p {
+                color: #777;
+                font-size: 18px;
+                line-height: 1.5;
+            }
+
+            .sticky-aside {
+                position: sticky;
+                top: 150px; /* Adjust this value as needed */
+                align-self: flex-start;
+            }
+
+            footer {
+                background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+                padding: 20px;
+                text-align: center;
+                margin-top: 230px;
+            }
+
+            footer h3 {
+                color: #333;
+                font-size: 22px;
+                margin-bottom: 10px;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .footerNotice {
+                text-align: center;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+            .footerNotice a {
+                color: #888888;
+                text-decoration: none;
+                margin: 0 5px;
+            }
+
+            .footerNotice a:hover {
+                color: #333333;
+            }
+
+            footer p {
+                color: #666;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <section class="topContainer">
+        <nav class="navbar">
+            <div class="logo"><h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <a href="/about"><li class="nav-item" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);">Home</li></a>
+                <li class="nav-item" style="background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);"><a href="#">Prompt Tool</a></li>
+                <li class="nav-item has-submenu" style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">
+                <a href="#">Blog</a>
+                <div class="submenu">
+                    <div class="submenu-item"><a href="#">Jobs</a></div>
+                    <div class="submenu-item"><a href="#">Lifestyle</a></div>
+                </div>
+                </li>
+                <li class="nav-item" style="background: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);"><a href="#">Tutorial</a></li>
+            </ul>
+        </nav>
+        <div class="topContainerContent">
+            <div class="row">
+                <article>
+                    <p>Home Automation revolves around the integration of technology into our living spaces to enhance
+                        comfort, security, energy efficiency, and overall convenience. Smart thermostats, lighting systems, security cameras,
+                        and voice-activated assistants are all examples of this trend. The goal is to create an environment that adapts to
+                        our needs and preferences seamlessly.</p>
+                
+                    <h2>Crafting Aesthetic Environments</h2>
+                
+                    <p>Generative AI can significantly elevate home automation by adding an artistic touch to the way our homes function.
+                        Imagine a living room that adjusts its ambiance based on your mood. Generative algorithms could analyze your facial
+                        expressions, tone of voice, or even your recent activities to create a lighting and music atmosphere that perfectly
+                        suits your emotional state. This fusion of emotion and automation could result in spaces that are not just responsive
+                        but also emotionally intelligent.</p>
+                
+                    <h2>Personalized Culinary Experiences</h2>
+                
+                    <p>The intersection of Generative AI and Home Automation could even revolutionize how we experience food at home.
+                        Picture a smart kitchen equipped with a generative recipe assistant. This AI-powered system could suggest
+                        personalized recipes based on your dietary preferences, the ingredients you have on hand, and even your previous
+                        culinary explorations. As you prepare the dish, the system could project virtual overlays onto your countertop,
+                        guiding you step-by-step through the cooking process. This integration not only fosters culinary creativity but also
+                        ensures a delightful and customized dining experience.</p>
+                
+                    <h2>Smart Artistic Expressions</h2>
+                
+                    <p>Art enthusiasts can also rejoice at the prospects of combining Generative AI with Home Automation. Your living room
+                        could evolve into an ever-changing art gallery, with AI-generated artwork displayed on digital canvases. These
+                        artworks could adapt to the time of day, the current season, or even your personal experiences, ensuring that your
+                        living space becomes an ever-evolving expression of your aesthetic sensibilities.</p>
+                
+                    <h2>The Ethereal Music Companions</h2>
+                
+                    <p>For music aficionados, the integration of Generative AI and Home Automation could lead to the emergence of ethereal
+                        music companions. These AI-driven systems could curate playlists that resonate with your current mood, the weather
+                        outside, or the activities you're engaged in. Through intelligent analysis of your preferences and environmental
+                        factors, these companions could craft soundscapes that elevate your auditory experience to new heights.</p>
+                
+                    <h2>The Path Ahead</h2>
+                
+                    <p>While the harmonious integration of Generative AI and Home Automation holds immense promise, it's essential to tread
+                        carefully. Privacy concerns and ethical considerations must be at the forefront of development, ensuring that the
+                        technology enhances our lives without compromising our values.</p>
+                
+                    <p>In conclusion, the synergy between Generative AI and Home Automation opens a world of possibilities where our living
+                        spaces transform into dynamic, personalized environments that cater to our physical, emotional, and aesthetic needs.
+                        As we continue to push the boundaries of technology, the dream of a truly intelligent and creative home inches closer
+                        to reality. Through responsible development and thoughtful implementation, we can turn this dream into a harmonious
+                        and inspiring daily existence.</p>
+                </article>
+        
+                <aside class="sticky-aside">
+                    <h2 style="margin-left: 20px;">Recommended Videos</h2>
+                    <ul class="video-list">
+                        <li class="video-item">
+                            <iframe src="https://www.youtube.com/embed/lXOtpL8iMgk?si=NBbweYXLuRGS0pkP" width="100%" height="100%" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </li>
+                        <li>
+                            <div class="video-description">
+                                The video is a review of using Chat GPT in the context of home automation, particularly with Home Assistant. The reviewer explores various aspects of incorporating GPT-3 into home automation, including its capabilities, strengths, and potential applications.</div>
+                        </li>
+                        <li class="video-item">
+                            <iframe src="https://www.youtube.com/embed/KdWQOfcEDdI?si=eUkt5RLwAAu0P0EC" width="100%" height="100%" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </li>
+                        <li>
+                            <div class="video-description">The video demonstrates AI's role in crafting home automations, from basic to advanced, showcasing its accuracy and usefulness. It envisions a future with seamless AI-integrated smart assistants for intuitive voice-controlled automation setups, revolutionizing the smart home landscape.</div>
+                        </li>
+                        <!-- Add more video items as needed -->
+                    </ul>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="termsContainer">
+            <p class="footerNotice">&copy; 2023 sidekickspace.com. All rights reserved. <a href="disclaimer.html">Disclaimer</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+    <script>
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+    </script>
+</body>
+</html>
+

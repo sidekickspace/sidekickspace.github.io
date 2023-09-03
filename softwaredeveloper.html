@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Sidekickspace - your AI sidekick</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+
+        body, html {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        article {
+            flex: 2;
+            margin-right: 2rem;
+        }
+
+        aside {
+            flex: 1;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .video-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .video-item {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .video-item iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-description {
+            text-align: left;
+            font-style: italic;
+            color: #888;
+            font-size: 14px;
+            margin-top: 20px; /* Add spacing between video and description */
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .video-item:hover .video-description {
+            color: #555;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #logo-font {
+            letter-spacing: 0.5px!important;
+            font-family: "Montserrat", sans-serif!important;
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px #bdbdbd;
+            font-size: 25px;
+            font-weight: 300;
+        }
+
+        .topContainer {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+        }
+
+        .navbar {
+            width: 90vw;
+            background: transparent;
+            color: black;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            /* Add styling for the mobile menu icon */
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: black;
+        }
+
+        .nav-list {
+            display: none;
+        }
+
+        .nav-list.active {
+            display: flex;
+            flex-direction: column;
+            background-color: white; /* Adjust the background color as needed */
+            position: absolute;
+            top: 60px; /* Adjust the top position as needed */
+            right: 5vw;
+            width: 60vw;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            flex-direction: column; /* Display nav-items vertically */
+            align-items: center; 
+        }
+
+        .nav-item {
+            display: inline-block;
+            padding: 10px 15px; /* Reduced padding */
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-weight: bold;
+            width: 40vw;
+            margin: 15px;
+            color: #333;
+        }
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+        }
+        .nav-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .has-submenu:hover .submenu {
+            display: block;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .has-submenu:hover {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                        -3px -3px 8px rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            transition: box-shadow 0.3s ease;
+            width: calc(40vw + 10px);
+            left: 0;
+            top: 100%;
+        }
+
+        .submenu-item {
+            margin: 20px;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        .topContainerContent {
+            width: 100%;
+            padding-top: 0px; /* Added padding for spacing */
+        }
+        .row {
+            display: flex;
+            flex-direction: column; /* Change the flex direction to column */
+            align-items: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #777;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .sticky-aside {
+            width:100%;
+        }
+
+        /*footer*/
+        footer {
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 20px;
+            text-align: center;
+            margin-top: 200px;
+        }
+        footer h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        footer p {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .footerBody {
+            text-align: left;
+        }
+        .footerNotice {
+            text-align: left;
+            font-weight: bold;
+            margin-top: 50px;
+            color: #888888;
+        }
+        .footerNotice a {
+            color: #888888;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footerNotice a:hover {
+            color: #333333;
+        }
+        #termsContainer {
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        /* Media Queries */
+        /* extra Small screens (up to 576px) */
+        @media screen and (max-width: 576px) {
+            
+
+        }
+
+        /* small screens (up to 768px) */
+        @media screen and (min-width: 577px) and (max-width: 768px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* medium screens (up to 992px) */
+        @media screen and (min-width: 769px) and (max-width: 992px) {
+            .navbar {
+                width: 96vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        /* large screens (above 992px) */
+        @media screen and (min-width: 993px) and (max-width: 1199px) {
+            
+        }
+
+        /* Extra-large screens (above 1200px) */
+        @media (min-width: 1200px) {
+            .topContainer {
+                width: 100%;
+                height: auto; 
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                background: white;
+                background-repeat: no-repeat;
+                background-size: 50% 50%; /* Adjust the size of the image */
+                background-position: bottom center;
+            }
+
+            #logo-font {
+                letter-spacing: 0.5px!important;
+                font-family: "Montserrat", sans-serif!important;
+                text-transform: uppercase;
+                text-shadow: 0 1px 2px #bdbdbd;
+                font-size: 25px;
+                font-weight: 300;
+            }
+
+            .navbar {
+                width: 50vw;
+                background: transparent;
+                color: black;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between; /* Distribute items to both ends */
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: none; /* Hide on desktop */
+                cursor: pointer;
+            }
+
+            .nav-list {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-item {
+                display: inline-block;
+                margin-right: 30px;
+                padding: 12px 24px;
+                font-size: 16px;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                width: 100px;
+                font-weight: bold;
+                text-align: center;
+                color: #333;
+            }
+            .nav-item a {
+                text-decoration: none;
+                color: #333;
+            }
+            .nav-item:hover {
+                transform: translateY(-3px);
+            }
+
+            .has-submenu:hover .submenu {
+                display: block;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .has-submenu:hover{
+                border-radius: 10px 10px 0 0;
+            }
+
+            .submenu {
+                display: none;
+                position: absolute;
+                background: #f0f0f0;
+                border-radius: 10px;
+                box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                            -3px -3px 8px rgba(255, 255, 255, 0.5);
+                padding: 10px;
+                transition: box-shadow 0.3s ease;
+                width: 125px;
+                left: 0; /* Align the submenu with the left side of .nav-item */
+                top: 100%;
+            }
+
+            .submenu-item {
+                margin: 20px;
+                text-align: center;
+                padding-left: 0px;
+            }
+
+            /*topContainer content*/
+            .topContainerContent {
+                width:  50vw;
+                padding-top: 20px;
+            }
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                flex-direction: row;
+                margin: 0px;
+            }
+
+            h1 {
+                color: #333;
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                color: #333;
+                font-size: 26px;
+                margin-bottom: 10px;
+            }
+            p {
+                color: #777;
+                font-size: 18px;
+                line-height: 1.5;
+            }
+
+            .sticky-aside {
+                position: sticky;
+                top: 150px; /* Adjust this value as needed */
+                align-self: flex-start;
+            }
+
+            footer {
+                background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+                padding: 20px;
+                text-align: center;
+                margin-top: 230px;
+            }
+
+            footer h3 {
+                color: #333;
+                font-size: 22px;
+                margin-bottom: 10px;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .footerNotice {
+                text-align: center;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+            .footerNotice a {
+                color: #888888;
+                text-decoration: none;
+                margin: 0 5px;
+            }
+
+            .footerNotice a:hover {
+                color: #333333;
+            }
+
+            footer p {
+                color: #666;
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <section class="topContainer">
+        <nav class="navbar">
+            <div class="logo"><h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1></div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-list">
+                <a href="/about"><li class="nav-item" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);">Home</li></a>
+                <li class="nav-item" style="background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);"><a href="#">Prompt Tool</a></li>
+                <li class="nav-item has-submenu" style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">
+                <a href="#">Blog</a>
+                <div class="submenu">
+                    <div class="submenu-item"><a href="#">Jobs</a></div>
+                    <div class="submenu-item"><a href="#">Lifestyle</a></div>
+                </div>
+                </li>
+                <li class="nav-item" style="background: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);"><a href="#">Tutorial</a></li>
+            </ul>
+        </nav>
+        <div class="topContainerContent">
+            <div class="row">
+                <article>
+                    <p>Software development is a rapidly evolving field that constantly seeks innovative ways to streamline processes, enhance creativity, and improve efficiency. In recent years, one of the most transformative advancements that has gained significant attention is Generative Artificial Intelligence (AI). This groundbreaking technology has the potential to revolutionize the way software developers approach their work, offering new tools and techniques to tackle complex challenges.</p>
+
+                    <p>Generative AI, often associated with deep learning and neural networks, enables machines to exhibit creative thinking and produce content that closely resembles human-created artifacts. This ranges from generating images and music to even producing entire pieces of text. The intersection of generative AI and software development opens up a realm of possibilities, allowing developers to automate repetitive tasks, create novel solutions, and explore new design spaces.</p>
+
+                    <p>The integration of generative AI in software development workflows empowers developers to break free from conventional norms and explore uncharted territories. Traditional programming involves explicitly defining rules and instructions for a computer to follow, which can be time-consuming and limiting in scenarios requiring creativity. Generative AI, on the other hand, learns from vast amounts of data and can generate code, designs, and even entire applications based on the patterns it discovers.</p>
+
+                    <p>Imagine a scenario where a developer needs to design a user interface for a mobile application. With generative AI, they can input the project's requirements and constraints, and the AI model can propose numerous design alternatives, each adhering to best practices and user experience guidelines. This not only accelerates the design process but also provides fresh perspectives that might not have been considered otherwise.</p>
+
+                    <p>Beyond design, generative AI has a profound impact on optimizing performance. For instance, it can analyze codebases, identify bottlenecks, and suggest optimizations to enhance an application's speed and efficiency. It can even assist in generating unit tests, reducing the likelihood of bugs and vulnerabilities. By automating these traditionally time-intensive tasks, developers can focus more on refining the overall user experience and adding value to their projects.</p>
+
+                    <p>However, embracing generative AI in software development isn't just about offloading tasks to machines. It's a collaboration between human creativity and machine intelligence. Developers still play a crucial role in guiding the AI, fine-tuning its outputs, and ensuring that the generated solutions align with the project's goals. This symbiotic relationship between humans and AI heralds a new era of software development where innovation is accelerated, and the creative potential of developers is amplified.</p>
+        
+                    <h2>Generative AI and Software Development</h2>
+                    <p>The synergy between Generative Artificial Intelligence (AI) and software development is redefining the landscape of innovation. Software developers, who traditionally relied on explicit programming to craft solutions, now have the extraordinary ability to harness the creative potential of AI to assist, enhance, and accelerate their work.</p>
+
+                    <p>At its core, Generative AI involves training machine learning models to learn from patterns in data and then use that learning to generate new content. In the context of software development, this could mean generating code, design assets, user interfaces, and even entire applications.</p>
+
+                    <p>One of the key applications of generative AI in software development is code generation. Developers often encounter repetitive tasks, like boilerplate code, that consume valuable time. Generative AI can automate the process by analyzing existing codebases, identifying patterns, and generating code snippets that fit the established style and logic. This not only accelerates development but also reduces the chances of introducing errors during manual coding.</p>
+
+                    <p>Moreover, generative AI can assist in solving complex optimization problems. For instance, in the realm of algorithm design, AI can explore vast solution spaces and propose optimized algorithms for specific tasks. This is particularly valuable in fields like data science, where developing efficient algorithms is crucial.</p>
+
+                    <p>Generative AI can also act as a catalyst for innovation. It enables developers to explore unconventional solutions by generating a multitude of ideas that they might not have thought of otherwise. This is particularly evident in user interface design. Developers can input design constraints, and AI models can provide numerous design alternatives, saving time and sparking creativity.</p>
+
+                    <p>Additionally, the concept of "pair programming" takes on a new meaning with generative AI. Developers can effectively "pair" with an AI model to collaboratively build solutions. The AI can provide suggestions, catch errors, and offer insights during the development process. This interaction not only enhances productivity but also creates a learning experience where developers can understand new techniques and approaches.</p>
+
+                    <p>It's worth noting that while generative AI holds immense promise, it's not without challenges. Ensuring that generated code adheres to best practices, is maintainable, and aligns with the project's goals requires careful tuning and oversight. The role of developers transitions from writing every line of code to curating the AI's outputs and making informed decisions.</p>
+
+                    <p>In conclusion, Generative AI is reshaping the software development landscape by augmenting the capabilities of developers and catalyzing innovation. By automating mundane tasks, suggesting novel solutions, and providing new avenues for creativity, generative AI empowers developers to focus on the higher-level aspects of their projects. While it's not a replacement for human ingenuity, it certainly complements and amplifies it, creating a symbiotic relationship between developers and machines that propels the field of software development into a new era of efficiency and exploration.</p>
+
+        
+                    <h2>Benefits of Using Generative AI</h2>
+
+                    <p>The integration of Generative Artificial Intelligence (AI) into the software development process brings forth a myriad of benefits that propel efficiency, creativity, and problem-solving to new heights. As developers embrace generative AI tools, they unlock a range of advantages that reshape how software is conceptualized, designed, and implemented.</p>
+
+                    <p><strong>Accelerated Development and Efficiency:</strong> Generative AI significantly expedites the development cycle by automating various tasks that otherwise demand significant time investment. Tasks like generating code snippets, designing graphical elements, and even debugging can be streamlined, allowing developers to allocate more time to strategic planning and refining overall user experiences.</p>
+
+                    <p><strong>Creative Exploration:</strong> One of the standout advantages of generative AI is its ability to foster creative exploration. Developers can input high-level concepts and parameters, and AI models can generate multiple solutions, encouraging the exploration of diverse design avenues. This not only sparks innovation but also enables developers to consider solutions they might have overlooked in a traditional development workflow.</p>
+
+                    <p><strong>Optimized Performance:</strong> Generative AI is instrumental in enhancing the performance of software applications. It can analyze codebases, identify bottlenecks, and suggest optimizations to enhance efficiency and speed. The AI's ability to analyze massive amounts of code quickly translates into well-optimized solutions that deliver a smoother user experience.</p>
+
+                    <p><strong>Enhanced Problem Solving:</strong> Complex problems often require creative solutions. Generative AI can tackle intricate challenges by generating a multitude of potential solutions, each grounded in patterns learned from vast data analysis. This provides developers with a wider range of options and strategies to address complex issues effectively.</p>
+
+                    <p><strong>Reduced Repetition:</strong> Repetitive tasks in software development, such as writing boilerplate code or generating test cases, can be mundane and error-prone. Generative AI excels at automating such tasks, ensuring consistency and freeing up developers' time to focus on more intellectually stimulating aspects of their projects.</p>
+
+                    <p><strong>Guided Learning and Skill Enhancement:</strong> Collaborating with generative AI models can serve as a powerful learning experience for developers. The AI's suggestions and insights provide a means for developers to understand new techniques, coding patterns, and approaches. This continuous learning process contributes to skill enhancement and knowledge diversification.</p>
+
+                    <p><strong>Iterative Design:</strong> Generative AI facilitates iterative design processes. Developers can quickly generate multiple design variations, experiment with different layouts, and receive immediate feedback. This iterative approach promotes an environment of constant improvement and refinement.</p>
+
+                    <p><strong>Accessibility and Inclusivity:</strong> Generative AI's automation capabilities make software development more accessible to a wider audience. It reduces barriers for entry by simplifying certain aspects of development, enabling individuals with varying degrees of technical expertise to participate and contribute effectively.</p>
+
+                    <p><strong>Unleashing Innovation:</strong> By handling routine tasks, generative AI liberates developers to focus on innovative solutions and user-centric design. This shift in focus from manual labor to strategic thinking cultivates an environment that fosters groundbreaking ideas and transformative advancements.</p>
+
+                    <p><strong>Human-AI Collaboration:</strong> It's important to highlight that generative AI does not replace human developers; rather, it complements and collaborates with them. Developers play a crucial role in guiding and refining the AI's outputs, ensuring that the generated solutions align with the project's goals and adhere to best practices.</p>
+
+                    <p>In essence, the benefits of using Generative AI in software development extend beyond mere time-saving. They encompass a holistic transformation of the development process, enabling developers to tap into their creative potential, streamline operations, and contribute to an ecosystem where innovation thrives.</p>
+
+        
+                    <h2>Conclusion</h2>
+                    <p>The marriage of Generative Artificial Intelligence (AI) with software development marks a pivotal juncture in the evolution of technology. The journey through the realms of creative automation, optimized solutions, and expansive innovation demonstrates the profound impact that this synergy has on reshaping the developer's landscape.</p>
+
+                    <p>Generative AI serves as a powerful ally, empowering developers to transcend the limitations of conventional programming. The ability to automate repetitive tasks, generate imaginative solutions, and optimize performance underscores a shift from manual labor to strategic thinking. As the development community embraces generative AI, the field morphs into a realm where developers become orchestrators of AI-driven creativity.</p>
+
+                    <p>It's essential to recognize that while generative AI possesses transformative capabilities, its true potential unfolds when it collaborates with human ingenuity. Developers act as mentors, curating the outputs of AI models, refining them, and ensuring that they seamlessly align with project objectives. This partnership leverages the strengths of both entities, culminating in outcomes that amalgamate the analytical prowess of AI with the innovative spark of human thought.</p>
+
+                    <p>Generative AI's impact goes beyond efficiency gains; it extends to democratizing software development. By simplifying intricate tasks and offering guidance, this technology makes the field more accessible to a diverse array of individuals. The boundary between novices and experts blurs as generative AI fosters an environment where creative contributions and insights know no bounds.</p>
+
+                    <p>Yet, as we embrace this transformative force, it's vital to approach it with an informed perspective. The journey of incorporating generative AI into development workflows requires careful consideration, understanding, and ethical considerations. While AI can amplify creativity, it also raises questions about intellectual ownership, bias mitigation, and the responsibilities of both developers and AI architects.</p>
+
+                    <p>As the horizon of software development continues to expand, driven by the fusion of human creativity and AI prowess, we find ourselves at the crossroads of limitless possibility. Generative AI fuels a cycle of perpetual innovation, a journey where developers are equipped to solve problems with unprecedented efficiency, envision solutions unbound by convention, and usher in a future where technology transcends the expected.</p>
+
+                    <p>In closing, the alliance between Generative AI and software development is not merely a technical advancement; it's a testament to the synergy between human brilliance and machine capabilities. It underscores the narrative that technology, when harnessed with care and purpose, has the power to reshape industries, amplify creativity, and redefine the boundaries of what's achievable.</p>
+
+                </article>
+        
+                <aside class="sticky-aside">
+                    <h2 style="margin-left: 20px;">Recommended Videos</h2>
+                    <ul class="video-list">
+                        <li class="video-item">
+                            <iframe src="https://www.youtube.com/embed/sTeoEFzVNSc?si=ezejKGpFZuZSrhVV" width="100%" height="100%" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </li>
+                        <li>
+                            <div class="video-description">Learn how to boost productivity with ChatGPT. Python, JavaScript, HTML, CSS, React, SQL examples shared in this tutorial for developers.</div>
+                        </li>
+                        <li class="video-item">
+                            <iframe src="https://www.youtube.com/embed/6gibI4Fo1R8?si=lTpYYFWNH3b6HPVX" width="100%" height="100%" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </li>
+                        <li>
+                            <div class="video-description">The engineer uses ChatGPT 4 to build an Amazon link redirection service, employing AI for coding. While successful, he acknowledges AI's current inability to fully replace developers.</div>
+                        </li>
+                        <!-- Add more video items as needed -->
+                    </ul>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="termsContainer">
+            <p class="footerNotice">&copy; 2023 sidekickspace.com. All rights reserved. <a href="disclaimer.html">Disclaimer</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+    <script>
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+    </script>
+</body>
+</html>
+

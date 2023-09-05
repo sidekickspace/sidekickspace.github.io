@@ -112,6 +112,24 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
     }
+    .tutorialText {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .tutorialLink {
+        text-decoration: none;
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 20px;
+        transition: background-color 0.3s ease;
+    }
+    .tutorialLink:hover {
+        background-color: #0056b3;
+    }
     #logo-font {
       letter-spacing: 0.5px!important;
       font-family: "Montserrat", sans-serif!important;
@@ -1506,8 +1524,31 @@
 <body>
 
   <header>
-    <h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1>
+    <nav class="navbar">
+          <div class="logo"><h1 id="logo-font"><span style="color:steelblue;">SIDEKICK</span><span style="color:lightcoral;">SPACE</span></h1></div>
+          <div class="menu-toggle" id="mobile-menu">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+          </div>
+          <ul class="nav-list" id="nav-list">
+              <a href="/"><li class="nav-item" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);">Home</li></a>
+              <a href="/tool"><li class="nav-item" style="background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);">Prompt Tool</li></a>
+              <a href="#">
+                  <li class="nav-item has-submenu" style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">
+                  Blog
+                  <div class="submenu">
+                      <div class="submenu-item"><a href="/index.html#jobSection ">Jobs</a></div>
+                      <div class="submenu-item"><a href="/index.html#lifestyleSection">Lifestyle</a></div>
+                  </div>
+                  </li>
+              </a>
+              <a href="/tutorial"><li class="nav-item" style="background: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);">Tutorial</li></a>
+          </ul>
+      </nav>
   </header>
+
+  <p class="tutorialText">If you want to learn how to use the tool, please check out the tutorial page.</p><a href="tutorial.html" class="tutorialLink">Go to the Tutorial</a>
 
   <div class="mainContainer">
     <div class="column leftColumn">

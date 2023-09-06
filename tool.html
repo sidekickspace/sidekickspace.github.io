@@ -112,24 +112,6 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
     }
-    .tutorialText {
-        font-size: 18px;
-        color: #666;
-        margin-bottom: 30px;
-    }
-
-    .tutorialLink {
-        text-decoration: none;
-        background-color: #007BFF;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 20px;
-        transition: background-color 0.3s ease;
-    }
-    .tutorialLink:hover {
-        background-color: #0056b3;
-    }
     #logo-font {
       letter-spacing: 0.5px!important;
       font-family: "Montserrat", sans-serif!important;
@@ -140,6 +122,104 @@
       margin-left: 3vw;
       margin-top: 20px;
       margin-bottom: 0px;
+    }
+   .navbar {
+        width: 90vw;
+        background: transparent;
+        color: black;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        /* Add styling for the mobile menu icon */
+        width: 30px;
+        height: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 0;
+    }
+
+    .bar {
+        width: 100%;
+        height: 3px;
+        background-color: black;
+    }
+
+    .nav-list {
+        display: none;
+    }
+
+    .nav-list.active {
+        display: flex;
+        flex-direction: column;
+        background-color: white; /* Adjust the background color as needed */
+        position: absolute;
+        top: 60px; /* Adjust the top position as needed */
+        right: 5vw;
+        width: 60vw;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                    -3px -3px 8px rgba(255, 255, 255, 0.5);
+        flex-direction: column; /* Display nav-items vertically */
+        align-items: center; 
+    }
+
+    .nav-item {
+        display: inline-block;
+        padding: 10px 15px; /* Reduced padding */
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                    -3px -3px 8px rgba(255, 255, 255, 0.5);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        font-weight: bold;
+        width: 40vw;
+        margin: 15px;
+        color: #333;
+    }
+    .nav-item a {
+        text-decoration: none;
+        color: #333;
+    }
+    .nav-item:hover {
+        transform: translateY(-3px);
+    }
+    .has-submenu:hover .submenu {
+        display: block;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .has-submenu:hover {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        background: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                    -3px -3px 8px rgba(255, 255, 255, 0.5);
+        padding: 10px;
+        transition: box-shadow 0.3s ease;
+        width: calc(40vw + 10px);
+        left: 0;
+        top: 100%;
+    }
+
+    .submenu-item {
+        margin: 20px;
+        text-align: left;
+        padding-left: 25px;
     }
 
     .mainContainer {
@@ -856,51 +936,84 @@
 
     /*footer*/
     footer {
-      background-color: #f8f8f8;
-      padding: 20px;
-      text-align: center;
-      margin-top: 200px;
+        background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        padding: 20px;
+        text-align: center;
+        margin-top: 200px;
     }
     footer h3 {
-      color: #333;
-      font-size: 20px;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: bold;
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
     }
     footer p {
-      color: #666;
-      font-size: 18px;
-      line-height: 1.5;
+        color: #666;
+        font-size: 18px;
+        line-height: 1.5;
     }
     .footerBody {
-      text-align: left;
+        text-align: left;
     }
     .footerNotice {
-      text-align: left;
-      font-weight: bold;
-      margin-top: 50px;
+        text-align: left;
+        font-weight: bold;
+        margin-top: 50px;
+        color: #888888;
     }
-    #disclaimerContainer,
+    .footerNotice a {
+        color: #888888;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+
+    .footerNotice a:hover {
+        color: #333333;
+    }
     #termsContainer {
-      margin-bottom: 50px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
+        margin-bottom: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
     }
 
-  /*Small devices (landscape phones, 576px and up)*/
-  @media (min-width: 576px) {
+  /* Media Queries */
+  /* extra Small screens (up to 576px) */
+  @media screen and (max-width: 576px) {
+      
 
   }
-  /*Medium devices (tablets, 768px and up)*/
-  @media (min-width: 768px) {
-    
+
+  /* small screens (up to 768px) */
+  @media screen and (min-width: 577px) and (max-width: 768px) {
+      .navbar {
+          width: 96vw;
+          background: transparent;
+          color: black;
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
   }
 
-  /*Large devices (desktops, 992px and up)*/
-  @media (min-width: 992px) {
+  /* medium screens (up to 992px) */
+  @media screen and (min-width: 769px) and (max-width: 992px) {
+      .navbar {
+          width: 96vw;
+          background: transparent;
+          color: black;
+          padding: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+  }
 
+  /* large screens (above 992px) */
+  @media screen and (min-width: 993px) and (max-width: 1199px) {
+      
   }
 
   /*Extra large devices (large desktops, 1200px and up)*/
@@ -916,6 +1029,76 @@
       margin-top: 50px;
       margin-bottom: 50px;
     }
+    .navbar {
+        width: 50vw;
+        background: transparent;
+        color: black;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between; /* Distribute items to both ends */
+        align-items: center;
+    }
+
+    .menu-toggle {
+        display: none; /* Hide on desktop */
+        cursor: pointer;
+    }
+
+    .nav-list {
+        display: flex;
+        list-style: none;
+    }
+    .nav-item {
+        display: inline-block;
+        margin-right: 30px;
+        padding: 12px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                    -3px -3px 8px rgba(255, 255, 255, 0.5);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        width: 100px;
+        font-weight: bold;
+        text-align: center;
+        color: #333;
+    }
+    .nav-item a {
+        text-decoration: none;
+        color: #333;
+    }
+    .nav-item:hover {
+        transform: translateY(-3px);
+    }
+
+    .has-submenu:hover .submenu {
+        display: block;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .has-submenu:hover{
+        border-radius: 10px 10px 0 0;
+    }
+    .submenu {
+        display: none;
+        position: absolute;
+        background: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1),
+                    -3px -3px 8px rgba(255, 255, 255, 0.5);
+        padding: 10px;
+        transition: box-shadow 0.3s ease;
+        width: 125px;
+        left: 0; /* Align the submenu with the left side of .nav-item */
+        top: 100%;
+    }
+
+    .submenu-item {
+        margin: 20px;
+        text-align: center;
+        padding-left: 0px;
+    }
+
     .mainContainer {
       display: flex;
       margin-top: 50px;
@@ -1497,24 +1680,39 @@
     }
 
     footer {
-      background-color: #f8f8f8;
-      padding: 100px;
-      text-align: center;
-      margin-top: 200px;
+        background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        padding: 20px;
+        text-align: center;
+        margin-top: 230px;
     }
 
     footer h3 {
-      color: #333;
-      font-size: 22px;
-      margin-bottom: 10px;
-      text-align: center;
-      font-weight: bold;
+        color: #333;
+        font-size: 22px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-weight: bold;
     }
 
     .footerNotice {
-      text-align: center;
-      font-weight: bold;
-      margin-top: 100px;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    .footerNotice a {
+        color: #888888;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+
+    .footerNotice a:hover {
+        color: #333333;
+    }
+
+    footer p {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.5;
     }
     
   }
@@ -1547,8 +1745,6 @@
           </ul>
       </nav>
   </header>
-
-  <p class="tutorialText">If you want to learn how to use the tool, please check out the tutorial page.</p><a href="tutorial.html" class="tutorialLink">Go to the Tutorial</a>
 
   <div class="mainContainer">
     <div class="column leftColumn">
@@ -2032,6 +2228,17 @@
 
     // Load the added buttons from Local Storage when the page is loaded
     loadButtonsFromLocalStorage();
+
+  </script>
+
+  <script>
+
+      const mobileMenu = document.getElementById('mobile-menu');
+      const navList = document.getElementById('nav-list');
+
+      mobileMenu.addEventListener('click', () => {
+          navList.classList.toggle('active');
+      });
 
   </script>
 

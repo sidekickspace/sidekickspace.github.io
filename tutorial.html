@@ -103,7 +103,7 @@
             transform: translateY(-3px);
         }
 
-        .has-submenu:hover .submenu {
+        .has-:hover .submenu {
             display: block;
             border-radius: 0 0 10px 10px;
         }
@@ -124,6 +124,7 @@
             width: calc(40vw + 10px);
             left: 0;
             top: 100%;
+            z-index: 1; /* Ensures the submenu appears above other content */
         }
 
         .submenu-item {
@@ -421,6 +422,7 @@
                 width: 125px;
                 left: 0; /* Align the submenu with the left side of .nav-item */
                 top: 100%;
+                z-index: 1; /* Ensures the submenu appears above other content */
             }
 
             .submenu-item {
@@ -542,11 +544,11 @@
                 <a href="/"><li class="nav-item" style="background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);">Home</li></a>
                 <a href="/tool"><li class="nav-item" style="background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);">Prompt Tool</li></a>
                 <a href="#">
-                    <li class="nav-item has-submenu" style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">
+                    <li class="nav-item has-" style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);">
                     Blog
-                    <div class="submenu">
-                        <div class="submenu-item"><a href="/index.html#jobSection ">Jobs</a></div>
-                        <div class="submenu-item"><a href="/index.html#lifestyleSection">Lifestyle</a></div>
+                    <div class="">
+                        <div class="-item"><a href="/index.html#jobSection ">Jobs</a></div>
+                        <div class="-item"><a href="/index.html#lifestyleSection">Lifestyle</a></div>
                     </div>
                     </li>
                 </a>

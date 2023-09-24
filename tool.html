@@ -820,6 +820,22 @@
       top: 20px;
       left: 20px;
     }
+    #button5right {
+      display: flex;
+      color: black;
+      background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      font-size: 26px;
+      position: absolute;
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      top: 20px;
+      left: 80px;
+    }
     #restoreBtn {
       position: absolute;
       top: 0;
@@ -1714,6 +1730,9 @@
     #textareaButtonTwo {
       display: none;
     }
+    #button5right {
+      display: none;
+    }
     #keyContainerButton {
       display: none;
     }
@@ -1884,6 +1903,7 @@
             </div>
             <div class="right-halftwo">
               <button id="textareaButtonTwo">&leftarrow;</button>
+              <button onclick="clearTextareaTwo()" id="button5right">&circlearrowright;</button>
               <button onclick="copyTextareaTwo()" id="restoreBtn">Restore & Copy</button>
               <textarea id="textarea2" placeholder="Paste the AI-generated text here and click 'Restore & Copy' to revert the random strings to the original content."></textarea>
               <div id="toasttwo" class="toast">Text restored and copied successfully!</div>
@@ -2049,7 +2069,7 @@
       rightHalf.style.display = 'none';
     });
 
-    const textareaButtonTwo = document.getElementById('textareaButtonTwo');
+    const  = document.getElementById('');
     const keyContainerButton = document.getElementById('keyContainerButton');
     const leftHalfTwo = document.querySelector('.left-halftwo');
     const rightHalfTwo = document.querySelector('.right-halftwo');

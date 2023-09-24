@@ -532,6 +532,26 @@
       transform: translateY(0);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
     }
+    #button1right {
+      position: absolute;
+      bottom: 30px;
+      right: 20px;
+      color: white;
+      background: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+      border: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      width: 120px;
+    }
+    #button1right:hover {
+      transform: translateY(-2px);
+    }
+    #button1right:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+    }
     .center-half {
         display: none;
     }
@@ -1468,6 +1488,9 @@
       transform: translateY(0);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
     }
+    #button1right {
+      display: none;
+    }
     .center-half {
         flex: 0 0 70px;
         background: transparent;
@@ -1800,6 +1823,7 @@
             <div class="right-half">
               <div id="wordButtonContainer"></div>
               <button id="wordButtonContainerButton">&leftarrow;</button>
+              <button onclick="copyTextarea()" id="button1right">Copy & Go</button>
             </div>
         </div>
       </div>

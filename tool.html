@@ -46,23 +46,7 @@
      
     }
 
-    function copyTextareaRight() {
-      /* Get the textarea element */
-      var textarea = document.getElementById("textarea1");
-
-      /* Select the text in the textarea */
-      textarea.select();
-
-      /* Copy the selected text to the clipboard */
-      document.execCommand("copy");
-
-      /* Deselect the textarea */
-      textarea.setSelectionRange(0, 0);
-
-      /* Redirect the user to AI in a new tab */
-      window.open("https://chat.openai.com/?model=text-davinci-002-render-sha", "_blank");
-     
-    }
+    
 
     function copyTextareaTwo() {
       /* Get the textarea element */
@@ -1903,7 +1887,7 @@
             </div>
             <div class="right-halftwo">
               <button id="textareaButtonTwo">&leftarrow;</button>
-              
+              <button onclick="clearTextareaTwo()" id="button5right">&circlearrowright;</button>
               <button onclick="copyTextareaTwo()" id="restoreBtn">Restore & Copy</button>
               <textarea id="textarea2" placeholder="Paste the AI-generated text here and click 'Restore & Copy' to revert the random strings to the original content."></textarea>
               <div id="toasttwo" class="toast">Text restored and copied successfully!</div>
